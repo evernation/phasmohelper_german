@@ -349,3 +349,9 @@ $(".evidence>li").each(function() {
 	else if (evidence.textContent === 'EMF Level 5')
 		evidence.textContent = 'EMF 5';
 });
+
+$(document).on('keydown', function(e) {
+	if (e.key === 'r') {
+		reset();
+	}
+});
