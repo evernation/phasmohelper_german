@@ -3,6 +3,7 @@
 <head>
 	<title>Phasmo.site - A Phasmophobia Companion Web App</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="edit.css">
 	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
 	<meta name="description" content="A Phasmophobia Web App for help with tracking ghost evidence and information.">
 	<meta name="keywords" content="Phasmophobia, PhasmoHelpeor, Phasmo, Companion App, Web App, Phasmo Site">
@@ -22,6 +23,7 @@
 			<a href="javascript:void(0);" id="toggle_instructions">Toggle Instructions</a>
 			<a href="javascript:void(0);" id="toggle_descriptions">Toggle Ghost Info</a>
 			<a href="javascript:void(0);" id="toggle_floatingorb">Toggle Orb</a>
+			<a href="javascript:void(0);" id="nightmare_difficulty">Nightmare</a>
 			<a href="javascript:void(0);" id="reset">Reset</a>
 		</div><!-- toggle_buttons -->
 
@@ -59,7 +61,7 @@
 				<h2 class="minimal">Cursed Possession:</h2>
 				<p class="instructions">You will always find a cursed possession during each contract. Each item has been reported to have paranormal abilities that can help you investigate.<br />
 					Be warned, using these items will lower your sanity. Make sure you're sane enough, otherwise they may break and initiate an attack from the ghost.</p>
-					<div class="row">
+					<div>
 						<div id="possessions_list">
 							<div>
 								<input type="checkbox" id="mirror" />
@@ -281,10 +283,6 @@
 			<div id="evidence">
 				<h2 class="minimal">Confirmed Evidence:</h2>
 				<p class="instructions">Track found evidence here. Slide left for confirmed evidence and right for eliminated evidence. If you are playing on Nightmare difficulty select Nightmare to account for one piece of evidence being hidden.  </p>
-				<div id="nightmare_checkbox">
-					<input  id="nightmare_difficulty" type="checkbox"  name="nightmare_difficulty" />
-					<label for="nightmare_difficulty">Nightmare</label>
-				</div>
 
 				<div id="evidence_list">
 					<ul>

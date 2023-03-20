@@ -82,9 +82,19 @@ function reset() {
 	warning("Please select up to 3 pieces of evidence to narrow down the spookster.", "#2f2f2f", "#fff");
 }
 
+function toggleNightmare() {
+	let body = $('body');
+	if (body.hasClass("nightmare"))
+		body.removeClass("nightmare");
+	else
+		body.addClass("nightmare");
+	
+	updateGhosts();
+}
+
 function updateGhosts() {
 	var foundEvidence = $('#evidence input').filter(function() { return this.value == 0 }).map(function(){return this.id;}).get();
-	var nightmare = $('#nightmare_difficulty').prop("checked");
+	var nightmare = $('#nightmare_difficulty').hasClass("active");
 	var minEvidenceLeft = Number.MAX_SAFE_INTEGER;
 	var maxEvidenceLeft = 0;
 
@@ -246,11 +256,15 @@ $("#possessions_list input").change(function() {
 	 **/
 	possessionsOptions.each(async function (i, item) {
 		const curOption = $(item);
+		
+		if (curOption.prop("id") === possessionsType)
+			return;
+		
 		if (!curOption.prop("checked") && !wasAnUncheck) {
-			curOption.parent().addClass("disabled").removeClass("active");
+			curOption.prop("checked", false);
 		}
 		else {
-			curOption.parent().removeClass("disabled").addClass("active");
+			curOption.prop("checked", false);
 		}
 	});
 
@@ -284,9 +298,7 @@ $("#possessions_list input").change(function() {
 	$("#possessions_hints").children(`#${textToRevealID}`).removeClass("hidden");
 });
 
-$("#nightmare_difficulty").change(function() {
-	updateGhosts();
-});
+$("#nightmare_difficulty").click(toggleNightmare);
 
 
 //Evidence has changed, update all affected ghosts
@@ -323,3 +335,17 @@ $("#evidence_list input").change(function() {
 });
 
 $(document).ready(reset);
+
+$(".evidence>li").each(function() {
+	let evidence = $(this)[0];
+
+	console.log(evidence.textContent)
+	if (evidence.textContent === 'D.O.T.S Projector')
+		evidence.textContent = 'D.O.T.S';
+	else if (evidence.textContent === 'Freezing Temperatures')
+		evidence.textContent = 'Freezing Temp';
+	else if (evidence.textContent === 'Fingerprints')
+		evidence.textContent = 'Finger-prints';
+	else if (evidence.textContent === 'EMF Level 5')
+		evidence.textContent = 'EMF 5';
+});
