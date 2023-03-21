@@ -1,5 +1,13 @@
-# Phasmohelper
-A web app for helping track ghost evidence in the game Phasmophobia
+# Phasmohelper (Jobus Fork)
+A web app for helping track ghost evidence in the game Phasmophobia.
+
+This is a fork of [Phasmohelper](https://github.com/zuffdaddy/phasmohelper) with my personal changes that are not suitable for pull requests.
+
+Changes from the original:
+- Greatly minimalized; does away with flavor and introductory text. Focus on the game details that can't be found in-game.
+- In Nightmare mode, highlight guaranteed evidence with dotted borders.
+- Cursed possession toggling: the other buttons no longer disappear when you open one of them, and the description is instead placed below.
+- 'R' hotkey to reset evidence.
 
 Access it here: https://phasmo.site
 
