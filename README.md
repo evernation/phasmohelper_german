@@ -9,7 +9,7 @@ Changes from the original:
 - Cursed possession toggling: the other buttons no longer disappear when you open one of them, and the description is instead placed below.
 - 'R' hotkey to reset evidence.
 
-Access it here: https://phasmo.site
+Access it here: https://jobus0.github.io/phasmohelper/
 
 # License
 MIT License
