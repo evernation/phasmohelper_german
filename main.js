@@ -1,5 +1,5 @@
 function writeCookie(name,value) {
-	d = new Date();
+	let d = new Date();
 	d.setTime(d.getTime() + (365*24*60*60*1000));
 	let expires = d.toGMTString();
 	document.cookie = name + "=" + value + ";" + "expires=" + expires + ";path=/";
@@ -339,7 +339,6 @@ $(document).ready(reset);
 $(".evidence>li").each(function() {
 	let evidence = $(this)[0];
 
-	console.log(evidence.textContent)
 	if (evidence.textContent === 'D.O.T.S Projector')
 		evidence.textContent = 'D.O.T.S';
 	else if (evidence.textContent === 'Freezing Temperatures')
