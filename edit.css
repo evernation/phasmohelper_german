@@ -35,7 +35,18 @@ input[type="checkbox"] + label:hover {background-color: #777777;}
 input[type="checkbox"]:checked + label {background-color: var(--blue);}
 input[type="checkbox"]:checked + label:hover {background-color: var(--blue-highlight);}
 
-input[type="checkbox"] + label {font-size:18px;}
+input[type="checkbox"] + label {font-size:16px;}
+
+#possessions_list {
+    position:absolute;
+    top: 22px;
+    margin-left:200px;
+}
+.toggle_buttons {
+    margin-bottom:0px;
+}
+
+#evidence {margin-bottom:30px;}
 
 #possessions_hints {max-width:1200px; margin-top:10px;}
 
