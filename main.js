@@ -75,8 +75,8 @@ function reset() {
 	$('form').trigger("reset");
 	//$("#aggression_list input").prop("checked", false).trigger("change");
 	$("#possessions_list input").prop("checked", false).trigger("change");
-	$('#evidence input').val(1);
-	$(".evidenceToggle input").each(function() {
+	$('.evidenceToggle').val(1);
+	$(".evidenceToggle").each(function() {
 		$(this).removeClass('yes no');
 	});
 	warning("Please select up to 3 pieces of evidence to narrow down the spookster.", "#2f2f2f", "#fff");
@@ -93,7 +93,7 @@ function toggleNightmare() {
 }
 
 function updateGhosts() {
-	var foundEvidence = $('#evidence input').filter(function() { return this.value == 0 }).map(function(){return this.id;}).get();
+	var foundEvidence = $('.evidenceToggle').filter(function() { return this.value == 0 }).map(function(){return this.id;}).get();
 	var nightmare = $('#nightmare_difficulty').hasClass("active");
 	var minEvidenceLeft = Number.MAX_SAFE_INTEGER;
 	var maxEvidenceLeft = 0;
@@ -135,7 +135,7 @@ function updateGhosts() {
 	});
 
 
-	$('#evidence_list input').filter(function() { return this.value != 0 }).each(function() {
+	$('.evidenceToggle').filter(function() { return this.value != 0 }).each(function() {
 		if(validEvidence.includes($(this).attr("id")))
 			$(this).parents('li').removeClass('disabled');
 		else if(validableEvidence.includes($(this).attr("id")))
@@ -300,35 +300,56 @@ $("#possessions_list input").change(function() {
 
 $("#nightmare_difficulty").click(toggleNightmare);
 
-
 //Evidence has changed, update all affected ghosts
-$("#evidence_list input").change(function() {
-	{
-		var changedEvidence = $(this).attr("id");
-		var changedGhosts = $("ul.evidence > li").filter(function(){
-			return $(this).data("evidence") === changedEvidence;
-		});
+$(".evidenceToggle").click(function() {
+	var changedEvidence = $(this).attr("id");
 
-		if(this.value == 1) {
-			$(this).removeClass("yes no");
-			changedGhosts.each(function() {
-				$(this).removeClass("yes no");
-			});
-		} else if(this.value == 0) {
+	var changedGhosts = $("ul.evidence > li").filter(function(){
+		return $(this).data("evidence") === changedEvidence;
+	});
+
+	if(this.value != 0) {
+		this.value = 0;
+		$(this).removeClass("no");
+		$(this).addClass("yes");
+		changedGhosts.each(function() {
 			$(this).removeClass("no");
 			$(this).addClass("yes");
-			changedGhosts.each(function() {
-				$(this).removeClass("no");
-				$(this).addClass("yes");
-			})
-		} else if(this.value == 2) {
+		})
+	} else {
+		this.value = 1;
+		$(this).removeClass("yes no");
+		changedGhosts.each(function() {
+			$(this).removeClass("yes no");
+		});
+	}
+
+	updateGhosts();
+});
+
+$(".evidenceToggle").contextmenu(function(e) {
+	e.preventDefault();
+
+	var changedEvidence = $(this).attr("id");
+
+	var changedGhosts = $("ul.evidence > li").filter(function(){
+		return $(this).data("evidence") === changedEvidence;
+	});
+
+	if(this.value != 2) {
+		this.value = 2;
+		$(this).removeClass("yes");
+		$(this).addClass("no");
+		changedGhosts.each(function() {
 			$(this).removeClass("yes");
 			$(this).addClass("no");
-			changedGhosts.each(function() {
-				$(this).removeClass("yes");
-				$(this).addClass("no");
-			})
-		}
+		})
+	} else {
+		this.value = 1;
+		$(this).removeClass("yes no");
+		changedGhosts.each(function() {
+			$(this).removeClass("yes no");
+		});
 	}
 
 	updateGhosts();
