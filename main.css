@@ -372,7 +372,7 @@ input[type="checkbox"]:checked + label {
 }
 
 .ghost {
-    transition: opacity 1s ease;
+    transition: opacity 0.125s ease;
     background: #000;
 	position: relative;
 }
@@ -500,13 +500,6 @@ a:hover {
 	}
 }
 
-.excluded ::before {
-    display: block;
-    position: absolute;
-    content: '';
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.1);
+.excluded {
+	opacity: 0.4;
 }

@@ -94,3 +94,12 @@ input[type="checkbox"] + label {font-size:18px;}
 .ghost .evidence li.no {
     background-color: var(--red-dark);
 }
+
+.ghost h3 {
+    cursor: pointer;
+}
+
+.ghost.manual-excluded h3 {
+    text-decoration:line-through;
+    color: #ff5757;
+}

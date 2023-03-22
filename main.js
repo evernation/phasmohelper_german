@@ -66,7 +66,7 @@ function fadein(div) {
 
 function reset() {
 	$('.ghost').each(function() {
-		$(this).removeClass('maybe disabled yes excluded fadein fadeout');
+		$(this).removeClass('maybe disabled yes excluded manual-excluded fadein fadeout');
 	});
 	$(".evidence li").each(function() {
 		$(this).removeClass('yes no');
@@ -107,7 +107,7 @@ function updateGhosts() {
 		$(this).parents(".ghost").removeClass("excluded");
 		if($(this).children(".yes").length !== foundEvidence.length) {
 			fadeout($(this).parents(".ghost"));
-		} else if($(this).children(".no").length > (nightmare ? 1 : 0) || $(this).find(".no[required='true']").length > 0 ) {
+		} else if($(this).children(".no").length > (nightmare ? 1 : 0) || $(this).find(".no[required='true']").length > 0) {
 			// In nightmare difficulty one piece of evidence is hidden, so a ghost can only be ruled out if
 			// two pieces of evidence are excluded OR if a required piece of evidence is excluded
 			$(this).parents(".ghost").addClass("excluded");
@@ -123,6 +123,11 @@ function updateGhosts() {
 			fadein($(this).parents(".ghost"));
 		}
 	});
+	
+	$(".ghost.manual-excluded").each(function() {
+		if (!$(this).hasClass("excluded"))
+			$(this).addClass("excluded");
+	})
 
 	var validEvidence = $(".ghost:not(.disabled):not(.excluded) .evidence li:not(.yes)").map(function(){return $(this).data("evidence");}).get()
 		.filter(function(value, index, self) {
@@ -374,4 +379,24 @@ $(document).on('keydown', function(e) {
 	if (e.key === 'r') {
 		reset();
 	}
+});
+
+$(".ghost h3").click(function () {
+	if ($(this).parents(".ghost").hasClass("manual-excluded"))
+		$(this).parents(".ghost").removeClass("manual-excluded");
+	else
+		$(this).parents(".ghost").addClass("manual-excluded");
+
+	updateGhosts();
+});
+
+$(".ghost h3").contextmenu(function (e) {
+	e.preventDefault();
+	
+	if ($(this).parents(".ghost").hasClass("manual-excluded"))
+		$(this).parents(".ghost").removeClass("manual-excluded");
+	else
+		$(this).parents(".ghost").addClass("manual-excluded");
+
+	updateGhosts();
 });
