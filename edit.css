@@ -42,7 +42,7 @@ input[type="checkbox"] + label {font-size:16px;}
 #possessions_list {
     position:absolute;
     top: 22px;
-    margin-left:200px;
+    margin-left:340px;
 }
 .toggle_buttons {
     margin-bottom:0px;
@@ -115,4 +115,8 @@ input[type="checkbox"] + label {font-size:16px;}
 .ghost.manual-excluded h3 {
     text-decoration:line-through;
     color: #ff5757;
+}
+
+.hide-excluded .ghost.excluded {
+    display: none;
 }

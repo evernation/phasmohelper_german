@@ -305,6 +305,19 @@ $("#possessions_list input").change(function() {
 
 $("#nightmare_difficulty").click(toggleNightmare);
 
+$("#hide_excluded").click(toggleHideExcluded);
+
+
+function toggleHideExcluded() {
+	let body = $('body');
+	if (body.hasClass("hide-excluded"))
+		body.removeClass("hide-excluded");
+	else
+		body.addClass("hide-excluded");
+
+	updateGhosts();
+}
+
 //Evidence has changed, update all affected ghosts
 $(".evidenceToggle").click(function() {
 	var changedEvidence = $(this).attr("id");
