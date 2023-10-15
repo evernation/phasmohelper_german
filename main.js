@@ -382,8 +382,6 @@ $(".evidence>li").each(function() {
 		evidence.textContent = 'D.O.T.S';
 	else if (evidence.textContent === 'Freezing Temperatures')
 		evidence.textContent = 'Freezing Temp';
-	else if (evidence.textContent === 'Fingerprints')
-		evidence.textContent = 'Finger-prints';
 	else if (evidence.textContent === 'EMF Level 5')
 		evidence.textContent = 'EMF 5';
 });
