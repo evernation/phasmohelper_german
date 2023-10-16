@@ -1,0 +1,182 @@
+﻿@import "colors"
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+\:root
+  color-scheme: dark
+
+body
+  height: 100vh
+  width: 100%
+  background: black
+  color: white
+  font-size: 14px
+  font-family: "Quicksand", sans-serif
+  padding: 20px
+
+#top-bar
+  display: flex
+  flex-wrap: wrap
+  gap: 25px
+  margin-bottom: 10px
+  align-items: center
+
+  .config-buttons
+    display: flex
+    gap: 10px
+
+a
+  color: $primary-light
+  font-weight: 700
+  padding: 0 2px
+
+  &:hover
+    background: $primary
+    color: white
+
+.button, .toggle
+  user-select: none
+  padding: 5px
+  border: none
+  border-radius: 2px
+  color: black
+  background: $secondary
+  font-family: "Quicksand", sans-serif
+  font-size: 18px
+  font-weight: 700
+  cursor: pointer
+  
+  &:hover
+    color: black
+    filter: brightness(140%)
+  
+  &.toggle.active
+    color: white
+    background: $primary
+
+#possession-buttons
+  display: flex
+  gap: 10px
+  
+  .toggle
+    font-size: 16px
+    padding: 5px 10px
+    
+    &:not(.active)
+      background: $neutral
+      color: white
+
+#possession-hints
+  margin-left: 10px
+  max-width: 1200px
+  
+  &.disabled
+    width: 0
+  
+  h2
+    font-size: 22px
+    font-weight: 400
+    margin: 0 0 5px 0
+  
+  p
+    margin: 0 0 15px 0
+    
+    &:last-of-type
+      margin: 0
+
+.disabled
+  display: none !important
+
+#ghosts
+  display: grid
+  flex-wrap: wrap
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+  grid-gap: 16px
+  grid-auto-flow: dense
+
+  .ghost
+    transition: opacity 0.125s ease
+    background: black
+    position: relative
+    
+    h3
+      font-size: 22px
+      transition: color 0.125s ease
+      margin: 0 0 0.2em 0
+      cursor: pointer
+    
+    &.positive h3
+      color: $positive-light
+    
+    p
+      margin: 0 0 0.8em 0
+      font-size: 13px
+
+    .evidence
+      flex-direction: row
+      display: flex
+      padding: 5px
+      gap: 5px
+      margin-top: 3px
+
+      li
+        list-style: none
+        background: $neutral-dark
+        border-radius: 5px
+        padding: 2px
+        text-align: center
+        margin: 0 0 0.4em 0
+        font-weight: 700
+        overflow: hidden
+        flex: 1
+        display: flex
+        align-items: center
+        justify-content: center
+        font-size: 13px
+        height: 38px
+        
+        &.positive
+          background: $positive-dark
+        
+        &.negative
+          background: $negative-dark
+    
+    &.manual-excluded h3
+      text-decoration: line-through
+      color: $negative-light
+
+.hide-excluded-toggle .ghost.excluded
+  display: none
+
+#evidence-buttons
+  display: flex
+  margin-top: 38px
+  margin-bottom: 23px
+  gap: 10px
+  
+  .button
+    background: $neutral
+    padding: 7px
+    font-size: 18px
+    border-radius: 2px
+    cursor: pointer
+    color: white
+    
+    &.positive
+      background: $positive
+      
+    &.negative
+      background: $negative
+      text-decoration: line-through
+
+.excluded
+  opacity: 0.4
+
+.nightmare .evidence li[required="true"]
+  outline: rgba(255, 215, 0, 0.5) 1px dashed
+
+  &.positive
+    outline: rgba(255, 215, 0, 1) 1px dashed

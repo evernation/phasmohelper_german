@@ -1,413 +1,189 @@
-function writeCookie(name,value) {
-	let d = new Date();
-	d.setTime(d.getTime() + (365*24*60*60*1000));
-	let expires = d.toGMTString();
-	document.cookie = name + "=" + value + ";" + "expires=" + expires + ";path=/";
+const nightmareToggle = $("#nightmare-toggle");
+const hideExcludedToggle = $("#hide-excluded-toggle")
+
+const possessionButtons = $("#possession-buttons").children();
+const possessionHints = $("#possession-hints").children();
+
+const evidenceButtons = $("#evidence-buttons .button");
+const ghosts = $(".ghost");
+const ghostEvidences = $(".ghost .evidence");
+
+function writeCookie(name, value) {
+    const d = new Date();
+    d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+    const expires = d.toUTCString();
+    document.cookie = name + "=" + value + ";" + "expires=" + expires + ";path=/";
 }
+
 function readCookie(name) {
-	let cname = name + "=";
-	let dc = decodeURIComponent(document.cookie);
-	let ca = dc.split(';');
-	for(let i = 0;i < ca.length; i++) {
-		let c = ca[i];
-		while (c.charAt(0) == ' ') {
-			c = c.substring(1);
-		}
-		if(c.indexOf(cname) == 0) {
-			return c.substring(cname.length, c.length);
-		}
-	}
-	return "";
+    const cname = name + "=";
+    const dc = decodeURIComponent(document.cookie);
+    const ca = dc.split(";");
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === " ") {
+            c = c.substring(1);
+        }
+        if (c.indexOf(cname) === 0) {
+            return c.substring(cname.length, c.length);
+        }
+    }
+    return "";
 }
 
 function loadSettings() {
-	if(readCookie("info") == "t") {
-		$(".description").hide();
-		$("#toggle_descriptions").addClass("active");
-	}
-	if(readCookie("info") == "f") {
-		$(".description").show();
-	}
-	if(readCookie("min") == "t") {
-		$("div.minimal").hide();
-		$("#toggle_minimal").addClass("active");
-		$("span").addClass("minimal");
-	}
-	if(readCookie("min") == "f") {
-		$("div.minimal").show();
-	}
-	if(readCookie("inst") == "t") {
-		$(".instructions").show();
-		$("#toggle_instructions").addClass("active");
-	}
-	if (readCookie("orb") == "f") {
-		$("#toggle_floatingorb").addClass("active");
-		$("body").removeClass("orb");
-	}
-}
-
-function warning(message, bgcolor, color) {
-	$(".warning").css(
-		"background-color", bgcolor
-		);
-	$(".warning_text").text(message);
-	$(".warning_text").css("color", color);
-}
-
-function fadeout(div) {
-	div.removeClass("fadein maybe yes");
-	div.addClass("fadeout disabled");
-}
-
-function fadein(div) {
-	div.removeClass("fadeout disabled maybe yes");
-	div.addClass("fadein");
+    if (readCookie("hide-excluded-toggle") === "True") {
+        $("body").addClass("hide-excluded-toggle")
+        hideExcludedToggle.addClass("active");
+    }
 }
 
 function reset() {
-	$('.ghost').each(function() {
-		$(this).removeClass('maybe disabled yes excluded manual-excluded fadein fadeout');
-	});
-	$(".evidence li").each(function() {
-		$(this).removeClass('yes no');
-	});
-	$("#evidence li").removeClass("disabled");
-	$('form').trigger("reset");
-	//$("#aggression_list input").prop("checked", false).trigger("change");
-	$("#possessions_list input").prop("checked", false).trigger("change");
-	$('.evidenceToggle').val(1);
-	$(".evidenceToggle").each(function() {
-		$(this).removeClass('yes no');
-	});
-	warning("Please select up to 3 pieces of evidence to narrow down the spookster.", "#2f2f2f", "#fff");
+    ghosts.removeClass("disabled positive excluded manual-excluded");
+    ghostEvidences.children("li").removeClass("positive negative");
+    evidenceButtons.removeClass("disabled positive negative");
 }
 
-function toggleNightmare() {
-	let body = $('body');
-	if (body.hasClass("nightmare"))
-		body.removeClass("nightmare");
-	else
-		body.addClass("nightmare");
-	
-	updateGhosts();
-}
+$("#reset").on("click", reset);
+
+$(document).on("keypress", function (e) {
+    if (e.key === "r") {
+        reset();
+    }
+});
+
+$(".toggle").on("click", function () {
+    $(this).toggleClass("active");
+});
+
+nightmareToggle.on("click", function () {
+    $("body").toggleClass("nightmare");
+    updateGhosts();
+});
 
 function updateGhosts() {
-	var foundEvidence = $('.evidenceToggle').filter(function() { return this.value == 0 }).map(function(){return this.id;}).get();
-	var nightmare = $('#nightmare_difficulty').hasClass("active");
-	var minEvidenceLeft = Number.MAX_SAFE_INTEGER;
-	var maxEvidenceLeft = 0;
+    const foundEvidence = $("#evidence-buttons .button.positive").map((i, e) => e.getAttribute("data-evidence")).get();
+    const nightmare = nightmareToggle.hasClass("active");
 
-	/**
-	*	Check the evidence list of each ghost
-	* Hide any ghosts that do not contain all currently discovered evidence
-	* Fade any ghosts that can be ruled out based on excluded evidence
-	*/
-	$(".evidence").each(function() {
-		$(this).parents(".ghost").removeClass("excluded");
-		if($(this).children(".yes").length !== foundEvidence.length) {
-			fadeout($(this).parents(".ghost"));
-		} else if($(this).children(".no").length > (nightmare ? 1 : 0) || $(this).find(".no[required='true']").length > 0) {
-			// In nightmare difficulty one piece of evidence is hidden, so a ghost can only be ruled out if
-			// two pieces of evidence are excluded OR if a required piece of evidence is excluded
-			$(this).parents(".ghost").addClass("excluded");
-			fadein($(this).parents(".ghost"));
-		}	else {
-			var thisEvidenceLeft = $(this).children("li:not(.yes)");
-			if(thisEvidenceLeft.length < minEvidenceLeft) {
-				minEvidenceLeft = thisEvidenceLeft.length;
-			}
-			if(thisEvidenceLeft.length > maxEvidenceLeft) {
-				maxEvidenceLeft = thisEvidenceLeft.length;
-			}
-			fadein($(this).parents(".ghost"));
-		}
-	});
-	
-	$(".ghost.manual-excluded").each(function() {
-		if (!$(this).hasClass("excluded"))
-			$(this).addClass("excluded");
-	})
+    // Check the evidence list of each ghost
+    // Hide any ghosts that do not contain all currently discovered evidence
+    // Fade any ghosts that can be ruled out based on excluded evidence
+    const negatives = $(".evidence .negative");
+    const negativesRequired = $(".evidence .negative[required='true']");
+    ghostEvidences.each(function () {
+        const $this = $(this);
+        const ghost = $this.parents(".ghost");
 
-	var validEvidence = $(".ghost:not(.disabled):not(.excluded) .evidence li:not(.yes)").map(function(){return $(this).data("evidence");}).get()
-		.filter(function(value, index, self) {
-		return self.indexOf(value) === index;
-	});
+        ghost.removeClass("excluded");
+        if ($this.children(".positive").length !== foundEvidence.length) {
+            ghost.addClass("disabled");
+        } else if ($this.find(negatives).length > (nightmare ? 1 : 0) || $this.find(negativesRequired).length > 0) {
+            // In nightmare difficulty one piece of evidence is hidden, so a ghost can only be ruled out if
+            // two pieces of evidence are excluded OR if a required piece of evidence is excluded
+            ghost.addClass("excluded");
+            ghost.removeClass("disabled");
+        } else {
+            ghost.removeClass("disabled");
+        }
+    });
 
-	var validableEvidence = $(".ghost:not(.disabled).excluded .evidence li.no").map(function(){return $(this).data("evidence");}).get()
-		.filter(function(value, index, self) {
-		return self.indexOf(value) === index && validEvidence.indexOf(value) === -1;
-	});
+    $(".ghost.manual-excluded").addClass("excluded");
 
+    const validEvidence = $(".ghost:not(.disabled):not(.excluded) .evidence li")
+        .map((i, e) => e.getAttribute("data-evidence")).get()
+        .filter((value, index, self) => self.indexOf(value) === index);
 
-	$('.evidenceToggle').filter(function() { return this.value != 0 }).each(function() {
-		if(validEvidence.includes($(this).attr("id")))
-			$(this).parents('li').removeClass('disabled');
-		else if(validableEvidence.includes($(this).attr("id")))
-			$(this).parents('li').removeClass('disabled');
-		else
-			$(this).parents('li').addClass('disabled');
-	});
+    const excludedEvidence = $(".ghost:not(.disabled).excluded .evidence li.negative")
+        .map((i, e) => e.getAttribute("data-evidence")).get()
+        .filter((value, index, self) => self.indexOf(value) === index);
 
-	if(maxEvidenceLeft >= 1)
-	{
-		if(minEvidenceLeft === maxEvidenceLeft)
-		{
-			if(maxEvidenceLeft === 1)
-				warning("Please select another evidence to identify the spookster.", "#2f2f2f", "#fff");
-			else
-				warning("Please select up to " + maxEvidenceLeft + " pieces of evidence to narrow down the spookster. Click it again to eliminate it as a possibility.", "#2f2f2f", "#fff");
-		}
-		else
-		{
-			// Technically the if/else statements don't need to be as complex...
-			warning("Please select up to " + maxEvidenceLeft + " pieces of evidence to narrow down the spookster. Click it again to eliminate it as a possibility.", "#2f2f2f", "#fff");
-		}
-	}
-	else if($(".ghost:not(.excluded):not(.disabled)").length === 1)
-	{
-		var Ghost = $(".ghost:not(.excluded):not(.disabled)");
-		if($(".ghost.excluded").length > 0)
-		{
-			Ghost.addClass("maybe");
-			warning("A ghost! But how can you be so sure?", "#1faef4", "#000");
-		}
-		else
-		{
-			Ghost.addClass("yes");
-			warning("Oh shit, a ghooost! Click the reset button above to start over.", "#55be61", "#000");
-		}
-	}
-	else if($(".ghost.excluded").length > 0)
-		warning("You excluded a vital piece of evidence!", "#c61c1ce0", "#fff");
-	else
-		warning("No combination of evidence works!", "#c61c1ce0", "#fff");
+    $("#evidence-buttons .button:not(.positive)").each(function () {
+        const $this = $(this);
+        const evidence = $this.data("evidence");
+        if (!validEvidence.includes(evidence) && !excludedEvidence.includes(evidence))
+            $this.addClass("disabled");
+        else
+            $this.removeClass("disabled");
+    });
+
+    const ghost = $(".ghost:not(.excluded):not(.disabled)");
+    if (ghost.length === 1)
+        ghost.addClass("positive");
+    else
+        ghost.removeClass("positive")
 }
 
-$("#toggle_instructions").click(function(){
-	if(readCookie("inst") == "t") {
-		writeCookie("inst","f");
-		$(".instructions").hide();
-		$("#toggle_instructions").addClass("active");
-	
-	} else {
-		writeCookie("inst","t");
-		$(".instructions").show();
-		$("#toggle_instructions").removeClass("active");
-	}
-	
+possessionButtons.on("click", function () {
+    possessionButtons.not(this).removeClass("active");
+
+    possessionHints.addClass("disabled");
+
+    if ($(this).hasClass("active"))
+        possessionHints.eq(possessionButtons.index(this)).removeClass("disabled");
 });
 
-$("#toggle_descriptions").click(function(){
-	if(readCookie("info") == "t") {
-		writeCookie("info","f");
-		$(".description").show();
-		$("#toggle_descriptions").addClass("active");
-	} else {
-		writeCookie("info","t");
-		$(".description").hide();
-		$("#toggle_descriptions").removeClass("active");
-	}
+hideExcludedToggle.on("click", function () {
+    let body = $("body");
+
+    if (body.hasClass("hide-excluded-toggle")) {
+        body.removeClass("hide-excluded-toggle");
+        writeCookie("hide-excluded-toggle", "False")
+    } else {
+        body.addClass("hide-excluded-toggle");
+        writeCookie("hide-excluded-toggle", "True")
+    }
+
+    updateGhosts();
 });
 
-$("#toggle_minimal").click(function(){
-	if(readCookie("min") == "t") {
-		writeCookie("min","f");
-		writeCookie("info","f");
-		$("div.minimal").show();
-		$("span").removeClass("minimal");
-		$(".description").show();
-		$("#toggle_minimal").addClass("active");
-		$("#toggle_descriptions").removeClass("active");
-	} else {
-		writeCookie("min","t");
-		writeCookie("info","t");
-		$("div.minimal").hide();
-		$("span").addClass("minimal");
-		$(".description").hide();
-		$("#toggle_minimal").removeClass("active");
-		$("#toggle_descriptions").addClass("active");
-	}
+evidenceButtons.on("click", function () {
+    const $this = $(this);
+    const changedEvidence = $this.data("evidence");
+
+    const changedGhosts = $(`.evidence > li[data-evidence=${changedEvidence}]`);
+
+    if (!$this.hasClass("positive")) {
+        $this.removeClass("negative");
+        $this.addClass("positive");
+        changedGhosts.removeClass("negative");
+        changedGhosts.addClass("positive");
+    } else {
+        $this.removeClass("positive negative");
+        changedGhosts.removeClass("positive negative");
+    }
+
+    updateGhosts();
 });
 
-$("#toggle_floatingorb").click(function(){
-	if((readCookie("orb") == "f")) {
-		writeCookie("orb","t");
-		$("#toggle_floatingorb").addClass("active");
-		$("body").addClass("orb");
-	} else {
-		writeCookie("orb","f");
-		$("#toggle_floatingorb").removeClass("active");
-		$("body").removeClass("orb");
-	}
+evidenceButtons.on("contextmenu", function (e) {
+    e.preventDefault();
+
+    const $this = $(this);
+    const changedEvidence = $this.data("evidence");
+
+    const changedGhosts = $(`.evidence > li[data-evidence=${changedEvidence}]`);
+
+    if (!$this.hasClass("negative")) {
+        $this.removeClass("positive");
+        $this.addClass("negative");
+        changedGhosts.removeClass("positive");
+        changedGhosts.addClass("negative");
+    } else {
+        $this.removeClass("positive negative");
+        changedGhosts.removeClass("positive negative");
+    }
+
+    updateGhosts();
 });
 
-$(".toggle_buttons a").each(function(){
-	$(this).click(function(){
-		$(this).toggleClass("active");
-	});
+const ghostHeaders = $(".ghost h3");
+ghostHeaders.on("click", function () {
+    $(this).parents(".ghost").toggleClass("manual-excluded");
+    updateGhosts();
 });
 
-$("#reset").click(reset);
-
-$("#possessions_list input").change(function() {
-	const possessionsOptions = $("#possessions_list input");
-	const wasAnUncheck = !$(this).prop("checked");
-	const possessionsType = !wasAnUncheck ? $(this).prop("id") : null;
-
-	/**
-	 * Loop through each option and add/remove the "disabled" class
-	 * depending on whether it's checked.
-	 **/
-	possessionsOptions.each(async function (i, item) {
-		const curOption = $(item);
-		
-		if (curOption.prop("id") === possessionsType)
-			return;
-		
-		if (!curOption.prop("checked") && !wasAnUncheck) {
-			curOption.prop("checked", false);
-		}
-		else {
-			curOption.prop("checked", false);
-		}
-	});
-
-	// Reveal the appropiate companion text for possessions meaning.
-	var textToRevealID = null
-
-	if (wasAnUncheck) {
-		$("#possessions_hints").addClass("hidden");
-	} else {
-		$("#possessions_hints").removeClass("hidden");
-	}
-
-	switch (possessionsType) {
-		case 'mirror': textToRevealID = "mirror_hint";
-            break;
-        case 'music': textToRevealID = "music_hint";
-            break;
-        case 'ouija': textToRevealID = "ouija_hint";
-            break;
-        case 'circle': textToRevealID = "circle_hint";
-            break;
-        case 'tarot': textToRevealID = "tarot_hint";
-            break;
-        case 'doll': textToRevealID = "doll_hint";
-            break;
-		case 'paw': textToRevealID = "paw_hint";
-			break;
-	}
-
-	$("#possessions_hints").children().addClass("hidden");
-	$("#possessions_hints").children(`#${textToRevealID}`).removeClass("hidden");
-});
-
-$("#nightmare_difficulty").click(toggleNightmare);
-
-$("#hide_excluded").click(toggleHideExcluded);
-
-
-function toggleHideExcluded() {
-	let body = $('body');
-	if (body.hasClass("hide-excluded"))
-		body.removeClass("hide-excluded");
-	else
-		body.addClass("hide-excluded");
-
-	updateGhosts();
-}
-
-//Evidence has changed, update all affected ghosts
-$(".evidenceToggle").click(function() {
-	var changedEvidence = $(this).attr("id");
-
-	var changedGhosts = $("ul.evidence > li").filter(function(){
-		return $(this).data("evidence") === changedEvidence;
-	});
-
-	if(this.value != 0) {
-		this.value = 0;
-		$(this).removeClass("no");
-		$(this).addClass("yes");
-		changedGhosts.each(function() {
-			$(this).removeClass("no");
-			$(this).addClass("yes");
-		})
-	} else {
-		this.value = 1;
-		$(this).removeClass("yes no");
-		changedGhosts.each(function() {
-			$(this).removeClass("yes no");
-		});
-	}
-
-	updateGhosts();
-});
-
-$(".evidenceToggle").contextmenu(function(e) {
-	e.preventDefault();
-
-	var changedEvidence = $(this).attr("id");
-
-	var changedGhosts = $("ul.evidence > li").filter(function(){
-		return $(this).data("evidence") === changedEvidence;
-	});
-
-	if(this.value != 2) {
-		this.value = 2;
-		$(this).removeClass("yes");
-		$(this).addClass("no");
-		changedGhosts.each(function() {
-			$(this).removeClass("yes");
-			$(this).addClass("no");
-		})
-	} else {
-		this.value = 1;
-		$(this).removeClass("yes no");
-		changedGhosts.each(function() {
-			$(this).removeClass("yes no");
-		});
-	}
-
-	updateGhosts();
-});
-
-$(document).ready(reset);
-
-$(".evidence>li").each(function() {
-	let evidence = $(this)[0];
-
-	if (evidence.textContent === 'D.O.T.S Projector')
-		evidence.textContent = 'D.O.T.S';
-	else if (evidence.textContent === 'Freezing Temperatures')
-		evidence.textContent = 'Freezing Temp';
-	else if (evidence.textContent === 'EMF Level 5')
-		evidence.textContent = 'EMF 5';
-});
-
-$(document).on('keydown', function(e) {
-	if (e.key === 'r') {
-		reset();
-	}
-});
-
-$(".ghost h3").click(function () {
-	if ($(this).parents(".ghost").hasClass("manual-excluded"))
-		$(this).parents(".ghost").removeClass("manual-excluded");
-	else
-		$(this).parents(".ghost").addClass("manual-excluded");
-
-	updateGhosts();
-});
-
-$(".ghost h3").contextmenu(function (e) {
-	e.preventDefault();
-	
-	if ($(this).parents(".ghost").hasClass("manual-excluded"))
-		$(this).parents(".ghost").removeClass("manual-excluded");
-	else
-		$(this).parents(".ghost").addClass("manual-excluded");
-
-	updateGhosts();
+ghostHeaders.on("contextmenu", function (e) {
+    e.preventDefault();
+    $(this).parents(".ghost").toggleClass("manual-excluded");
+    updateGhosts();
 });
