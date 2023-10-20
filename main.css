@@ -108,7 +108,7 @@ a:hover {
 
 #possession-hints {
   margin-left: 10px;
-  max-width: 1200px;
+  max-width: 1060px;
 }
 #possession-hints.disabled {
   width: 0;
@@ -118,11 +118,8 @@ a:hover {
   font-weight: 400;
   margin: 0 0 5px 0;
 }
-#possession-hints p {
+#possession-hints p, #possession-hints ul {
   margin: 0 0 15px 0;
-}
-#possession-hints p:last-of-type {
-  margin: 0;
 }
 
 .disabled {

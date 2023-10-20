@@ -31,23 +31,36 @@
 <div id="possession-hints">
     <div class="disabled">
         <h2>Haunted Mirror</h2>
-        <p>The mirror must be toggled while inside. When activated, the haunted mirror will show a view of a part of the ghost room as a sweeping panorama, allowing players to locate the room by cross-reference. <br/>
-            If the users' sanity reaches zero, the mirror will break and start a cursed hunt near the users' position. </p>
+        <ul>
+            <li>The haunted mirror can be activated by right-clicking while holding it in your hands.</li>
+            <li>When activated, the haunted mirror will show a view of a part of the ghost room as a sweeping panorama, allowing players to locate the room by cross-reference.</li>
+            <li>While active, the mirror creates a faint glow over the shown area, which all players can see, even outside of the mirror.</li>
+            <li>Can only be used while inside the investigation area.</li>
+            <li>Each use of the mirror drains 7.5% sanity per second, but no less than 20%. This means that using the mirror for less than 2.67 seconds will still drain at least 20% sanity.</li>
+            <li>If the user's sanity reaches zero, the mirror will break and initiate a cursed hunt.</li>
+        </ul>
     </div>
     <div class="disabled">
         <h2>Music Box</h2>
-        <p>A music box can be activated by holding it in the hand and using the secondary use key to activate the device. The music box can only be used once.<br/>
-            The music box will make the ghost sing along while being invisible, broadcasting its location. If the music box is 5 meters or less from the ghost, it will appear and start walking towards the box. If the ghost touches it, walks for more than 5 seconds, or the player drops the box while the tune is playing, it will start a cursed hunt. The music box can be handheld or put on the floor, the latter being the only safe way to discard the box without triggering a cursed hunt while it's playing.<br/>
-            The sanity will drop only if the player can hear the song.</p>
+        <ul>
+            <li>The music box can be activated by right-clicking while holding it in your hand. Doing so will end the setup phase early if it is ongoing.</li>
+            <li>If the box is within 20 metres of the ghost, the ghost will sing along, broadcasting its location.</li>
+            <li>If the box is within 5 metres of the the ghost, it will trigger a Ghost Event where the ghost manifests and begins to walk towards it.</li>
+            <li>During this Ghost Event, if the ghost reaches the music box or spends more than 5 seconds walking towards it, it will initiate a cursed hunt.</li>
+            <li>The box can be placed on the ground while active. However, if thrown while active, it will initiate a cursed hunt.</li>
+            <li>Being within 2.5 metres of an active music box drains the player's sanity at a rate of 2.5%/s, totaling 75% if the entire song is listened to. This applies to all players within the range.</li>
+            <li>It can only be used once.</li>
+        </ul>
     </div>
     <div class="disabled">
         <h2>Ouija Board</h2>
-        <p>Once activated, the planchette will appear, cancelling the setup phase if it is ongoing.<br/>
-            The player asking the question must have the Ouija Board inside the investigation area, as well as be inside to ask questions.<br/>
-            The Ouija Board does not have to be in the Ghost Room (nor the ghost's current room) to respond.<br/>
-            To deactivate the Ouija Board, the player must say "Goodbye", which will make the planchette disappear.<br/>
-            If the player who activated the board walks away from an active Ouija Board, or has insufficient sanity to "pay" for the question that they ask, the board will break itself up and trigger a cursed hunt.<br/>
-
+        <ul>
+            <li>The Ouija Board can be activated by left-clicking on it if the player is not holding it, or by right-clicking while holding it.</li>
+            <li>Once activated, the planchette will appear, cancelling the setup phase if it is ongoing.</li>
+            <li>The player can then ask the various questions listed below, each costing some amount of sanity.</li>
+            <li>To deactivate the Ouija Board, the player must say "Goodbye", which will make the planchette disappear.</li>
+            <li>If the player who activated the board walks away from an active Ouija Board, or has insufficient sanity to "pay" for the question that they ask, the board will break and initiate a cursed hunt.</li>
+        </ul>
         <table>
             <tr>
                 <th>Question</th>
@@ -87,23 +100,32 @@
             </tr>
         </table>
         <br/>
-        <p>If the question is recognised, the planchette will move to answer the question, and an EMF Level 2 reading will be generated around the Ouija Board.<br/>
-            If the ghost has EMF Level 5 as evidence, there is a 25% chance for this to be the reading instead.<br/>
-            The response chance is not affected by whether or not the ghost is shy.</p>
+        <ul>
+            <li>If the question is recognised, the planchette will move to answer the question, and an EMF Level 2 reading will be generated around the Ouija Board.</li>
+            <li>If the ghost has EMF Level 5 as evidence, there is a 25% chance for this to be the reading instead.</li>
+            <li>The Ouija Board does not have to be in the Ghost Room (nor the ghost's current room) to work.</li>
+            <li>Can only be used while inside the investigation area.</li>
+        </ul>
     </div>
     <div class="disabled">
         <h2>Summoning Circle</h2>
-        <p>The summoning circle can be used by lighting all five red candles with a lighter.<br/>
-            Each candle deducts 16% sanity, leading to a total of 80% sanity being deducted for all candles.<br/>
-            Once all five candles are lit, the ghost will be summoned and fully-materialized, and stay motionless for 5 seconds, unable to kill players. <br/>
-            After the 5 second "grace period", it will immediately initiate a cursed hunt on the spot. Once the summoning circle has been activated, it cannot be used again.<br/><br/>
-
-            If the circle is lit while a hunt is already ongoing, the ghost will be teleported to the middle of the circle, and the hunt will continue. </p>
+        <ul>
+            <li>The summoning circle can be activated by lighting all five red candles with a lighter.</li>
+            <li>Each candle lit deducts 16% sanity, leading to a total of 80% sanity being deducted for all candles.</li>
+            <li>Once all five candles are lit, the ghost will be summoned to the center of the circle fully materialized, and stay motionless for 5 seconds as a Ghost Event.</li>
+            <li>After the 5 seconds, it will immediately initiate a cursed hunt on the spot.</li>
+            <li>If the player has less than 16% sanity when lighting the last candle, it will skip the 5 seconds Ghost Event and immediately initiate a cursed hunt instead.</li>
+            <li>Once the summoning circle has been activated, it cannot be used again.</li>
+        </ul>
     </div>
     <div class="disabled">
         <h2>Tarot Cards</h2>
-        <p>Each Tarot cards deck contains 10 randomly generated cards. There are various possible cards the player can draw from the deck, each having a unique effect on either the player or the ghost if it is nearby. After being used, each card will vanish in a colored flame that is dependent on its type. The cards must be drawn inside the investigation area for them to work.<br/><br/>
-            There are 10 possible cards that can be drawn. A single card type can appear more than once in the deck, and there are different percentages for each card to spawn.<br/>
+        <ul>
+            <li>Each Tarot cards deck contains 10 randomly generated cards. A single card type can appear more than once in the deck.</li>
+            <li>There are various cards the player can draw from the deck, each having a unique effect on either the player or the ghost.</li>
+            <li>After being used, each card will vanish in a colored flame that is dependent on its type.</li>
+            <li>Tarot cards can only be drawn while inside the investigation area.</li>
+        </ul>
         <table>
             <tr>
                 <th>Card</th>
@@ -162,14 +184,14 @@
                 <td>Instantly kills the player.</td>
             </tr>
         </table>
-        <br/>
-        <p>There will only be one deck of tarot cards that will spawn should it spawn, and once all ten have been used, no more will be given to the player.</p>
     </div>
     <div class="disabled">
         <h2>Voodoo Doll</h2>
-        <p>Interacting with the voodoo doll will cause one of the 10 pins stuck in the doll to be pushed into it at random.<br/>
-            This will cause the ghost to perform an interaction, and will drop the player's sanity by 5%. If the heart pin is pressed down, it will instead initiate a cursed hunt and drop the player's sanity by 10%.<br/>
-            If the player's sanity is less than what the pressed pin would drain, all of the remaining pins will get pushed in and a cursed hunt will occur. </p>
+        <ul>
+            <li>Interacting with the voodoo doll will cause one of the 10 pins stuck in the doll to be pushed in at random, causing the ghost to perform an interaction, and drops the player's sanity by 5%.</li>
+            <li>If the heart pin is pressed in, it will instead initiate a cursed hunt and drop the player's sanity by 10%.</li>
+            <li>If the player's sanity is less than what the pressed pin would drain, all of the remaining pins will get pushed in and a cursed hunt will occur.</li>
+        </ul>
     </div>
     <div class="disabled">
         <h2>Monkey Paw</h2>
@@ -221,12 +243,17 @@
                 <td>Cursed Hunt, and permanently reduced vision and muffled hearing.</td>
             </tr>
             <tr>
+                <td>I wish for <span style="color: darkgray">weather</span>*</td>
+                <td>Changes the weather as desired.</td>
+                <td>Blindness while the weather changes, and 25% sanity loss for the player who made the wish.</td>
+            </tr>
+            <tr>
                 <td>I wish for anything</td>
                 <td>Randomly pick a wish.</td>
             </tr>
         </table>
         <br/>
-        <p>Additionally, you may wish for a change of weather with the penalty of going temporarily blind while the weather undergoes its change: I wish for clear skies/rain/snow/sunrise/fog.</p>
+        <sup>*<span style="color: darkgray">weather</span> = sun, rain, clear sky, fog, snow, or wind.</sup>
     </div>
 </div>
 
@@ -533,7 +560,7 @@
                 <li><span class="ghost-events">Ghost Events</span> are likely to be ghost mist/airball (audio ones with the breath, hiss, or woosh).</li>
                 <li><span class="ghost-events">Ghost Events</span> showing its form are likely to be a shadowy figure.</li>
                 <li><span class="interactions">Interactions</span> cannot be thrown object if a player is in the same room as the ghost.</li>
-                <li>When made to appear using a Summoning Circle or a Music Box, it has a chance of appearing as a black shadow rather than its full form while stationary.</li>
+                <li>When made to appear using a Summoning Circle, a Music Box, or a Monkey Paw, it has a chance of appearing as a black shadow rather than its full form while stationary.</li>
             </ul>
             <ul class="evidence">
                 <li data-evidence="emf">EMF 5</li>
