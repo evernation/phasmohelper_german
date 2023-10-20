@@ -1,0 +1,228 @@
+.interactions {
+  color: deepskyblue;
+}
+
+.sanity-loss {
+  color: plum;
+}
+
+.ghost-events {
+  color: aqua;
+}
+
+.when-hunting {
+  color: deeppink;
+}
+
+.average-sanity-hunt {
+  color: orange;
+}
+
+.hunt-initiation {
+  color: greenyellow;
+}
+
+.hunting-speed {
+  color: tomato;
+}
+
+.smudge-stick-hunt-prevention {
+  color: rosybrown;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background: black;
+  color: white;
+  font-size: 14px;
+  font-family: "Quicksand", sans-serif;
+  padding: 20px;
+}
+
+#top-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+#top-bar .config-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+a {
+  color: #4764ac;
+  font-weight: 700;
+  padding: 0 2px;
+}
+a:hover {
+  background: #384f88;
+  color: white;
+}
+
+.button, .toggle {
+  user-select: none;
+  padding: 5px;
+  border: none;
+  border-radius: 2px;
+  color: black;
+  background: #d7d7d7;
+  font-family: "Quicksand", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.button:hover, .toggle:hover {
+  color: black;
+  filter: brightness(140%);
+}
+.button.toggle.active, .toggle.toggle.active {
+  color: white;
+  background: #384f88;
+}
+
+#possession-buttons {
+  display: flex;
+  gap: 10px;
+}
+#possession-buttons .toggle {
+  font-size: 16px;
+  padding: 5px 10px;
+}
+#possession-buttons .toggle:not(.active) {
+  background: #484848;
+  color: white;
+}
+
+#possession-hints {
+  margin-left: 10px;
+  max-width: 1200px;
+}
+#possession-hints.disabled {
+  width: 0;
+}
+#possession-hints h2 {
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0 0 5px 0;
+}
+#possession-hints p {
+  margin: 0 0 15px 0;
+}
+#possession-hints p:last-of-type {
+  margin: 0;
+}
+
+.disabled {
+  display: none !important;
+}
+
+#ghosts {
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 16px;
+  grid-auto-flow: dense;
+}
+#ghosts .ghost {
+  transition: opacity 0.125s ease;
+  background: black;
+  position: relative;
+}
+#ghosts .ghost h3 {
+  font-size: 22px;
+  transition: color 0.125s ease;
+  margin: 0 0 0.2em 0;
+  cursor: pointer;
+}
+#ghosts .ghost.positive h3 {
+  color: #5cac47;
+}
+#ghosts .ghost p {
+  margin: 0 0 0.8em 0;
+  font-size: 13px;
+}
+#ghosts .ghost .evidence {
+  flex-direction: row;
+  display: flex;
+  padding: 5px;
+  gap: 5px;
+  margin-top: 3px;
+}
+#ghosts .ghost .evidence li {
+  list-style: none;
+  background: #2f2f2f;
+  border-radius: 5px;
+  padding: 2px;
+  text-align: center;
+  margin: 0 0 0.4em 0;
+  font-weight: 700;
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  height: 38px;
+}
+#ghosts .ghost .evidence li.positive {
+  background: #366429;
+}
+#ghosts .ghost .evidence li.negative {
+  background: #6f1919;
+}
+#ghosts .ghost.manual-excluded h3 {
+  text-decoration: line-through;
+  color: #c12d2d;
+}
+
+.hide-excluded-toggle .ghost.excluded {
+  display: none;
+}
+
+#evidence-buttons {
+  display: flex;
+  margin-top: 38px;
+  margin-bottom: 23px;
+  gap: 10px;
+}
+#evidence-buttons .button {
+  background: #484848;
+  padding: 7px;
+  font-size: 18px;
+  border-radius: 2px;
+  cursor: pointer;
+  color: white;
+}
+#evidence-buttons .button.positive {
+  background: #498838;
+}
+#evidence-buttons .button.negative {
+  background: #982323;
+  text-decoration: line-through;
+}
+
+.excluded {
+  opacity: 0.4;
+}
+
+.nightmare .evidence li[required=true] {
+  outline: rgba(255, 215, 0, 0.5) 1px dashed;
+}
+.nightmare .evidence li[required=true].positive {
+  outline: rgb(255, 215, 0) 1px dashed;
+}
+
+/*# sourceMappingURL=main.css.map */
