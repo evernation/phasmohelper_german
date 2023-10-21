@@ -8,6 +8,9 @@ const evidenceButtons = $("#evidence-buttons .button");
 const ghosts = $(".ghost");
 const ghostEvidences = $(".ghost .evidence");
 
+const body = $("body");
+const bottomContent = $("#bottom-content");
+
 function writeCookie(name, value) {
     const d = new Date();
     d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
@@ -33,7 +36,7 @@ function readCookie(name) {
 
 function loadSettings() {
     if (readCookie("hide-excluded-toggle") === "True") {
-        $("body").addClass("hide-excluded-toggle")
+        body.addClass("hide-excluded-toggle")
         hideExcludedToggle.addClass("active");
     }
 }
@@ -42,6 +45,7 @@ function reset() {
     ghosts.removeClass("disabled positive excluded manual-excluded");
     ghostEvidences.children("li").removeClass("positive negative");
     evidenceButtons.removeClass("disabled positive negative");
+    body.removeClass("positive negative");
 }
 
 $("#reset").on("click", reset);
@@ -57,7 +61,7 @@ $(".toggle").on("click", function () {
 });
 
 nightmareToggle.on("click", function () {
-    $("body").toggleClass("nightmare");
+    body.toggleClass("nightmare");
     updateGhosts();
 });
 
@@ -107,24 +111,32 @@ function updateGhosts() {
     });
 
     const ghost = $(".ghost:not(.excluded):not(.disabled)");
-    if (ghost.length === 1)
+    if (ghost.length === 1) {
         ghost.addClass("positive");
-    else
+    }
+    else {
         ghost.removeClass("positive")
+    }
 }
 
 possessionButtons.on("click", function () {
     possessionButtons.not(this).removeClass("active");
 
     possessionHints.addClass("disabled");
+    
+    const container = $("#possession-hints");
+    container.addClass("disabled");
+    bottomContent[0].style.marginTop = "0px";
 
     if ($(this).hasClass("active"))
+    {
         possessionHints.eq(possessionButtons.index(this)).removeClass("disabled");
+        container.removeClass("disabled");
+        bottomContent[0].style.marginTop = (container[0].clientHeight) + "px";
+    }
 });
 
 hideExcludedToggle.on("click", function () {
-    let body = $("body");
-
     if (body.hasClass("hide-excluded-toggle")) {
         body.removeClass("hide-excluded-toggle");
         writeCookie("hide-excluded-toggle", "False")

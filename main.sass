@@ -15,27 +15,36 @@ body
   color: white
   font-size: 14px
   font-family: "Quicksand", sans-serif
-  padding: 20px
 
-#top-bar
+#top-content
   display: flex
   flex-wrap: wrap
   gap: 25px
-  margin-bottom: 10px
   align-items: center
+  padding: 10px
+  background: #2c2c2c
+  box-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px
 
   .config-buttons
     display: flex
     gap: 10px
 
 a
-  color: $primary-light
+  color: $primary
   font-weight: 700
   padding: 0 2px
 
   &:hover
-    background: $primary
-    color: white
+    color: $primary-light
+    
+  img
+    opacity: 0.5
+    
+    &:hover
+      opacity: 1.0
+
+#bottom-content
+  padding: 20px
 
 .button, .toggle
   user-select: none
@@ -53,26 +62,58 @@ a
     color: black
     filter: brightness(140%)
   
-  &.toggle.active
+  &.active
     color: white
     background: $primary
 
 #possession-buttons
   display: flex
-  gap: 10px
+  gap: 2px
   
   .toggle
-    font-size: 16px
+    font-size: 15px
     padding: 5px 10px
+    border-radius: 0
+    
+    &:first-of-type
+      border-top-left-radius: 5px
+      
+      &:not(.active)
+        border-bottom-left-radius: 5px
+      
+    &:last-of-type
+      border-top-right-radius: 5px
+
+      &:not(.active)
+        border-bottom-right-radius: 5px
     
     &:not(.active)
-      background: $neutral
+      background: darken($neutral-dark, 8%)
       color: white
+    
+    &.active
+      margin-bottom: -3px
 
 #possession-hints
-  margin-left: 10px
-  max-width: 1060px
+  padding: 10px
+  background: #2c2c2c
+  position: absolute
+  border-top: $primary 3px solid
+  border-radius: 5px
+  margin: 3px 5px 0 5px
+  z-index: 1000
+  box-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px
   
+  table
+    white-space: nowrap
+    text-align: left
+    
+    th:not(:last-of-type), td:not(:last-of-type)
+      padding-right: 15px
+    
+    tr:nth-child(odd)
+      background: #1c1c1c
+
   &.disabled
     width: 0
   
@@ -83,6 +124,15 @@ a
   
   p, ul
     margin: 0 0 15px 0
+  
+  ul
+    margin-left: 20px
+    
+    li:not(:last-of-type)
+      margin-bottom: 3px
+  
+  div>:last-child
+    margin-bottom: 0
 
 .disabled
   display: none !important
@@ -96,7 +146,6 @@ a
 
   .ghost
     transition: opacity 0.125s ease
-    background: black
     position: relative
     
     h3
@@ -111,13 +160,16 @@ a
     p
       margin: 0 0 0.8em 0
       font-size: 13px
+      
+    ul
+      margin-left: 15px
 
     .evidence
       flex-direction: row
       display: flex
       padding: 5px
       gap: 5px
-      margin-top: 3px
+      margin: 3px 0 0 0
 
       li
         list-style: none
@@ -150,8 +202,7 @@ a
 
 #evidence-buttons
   display: flex
-  margin-top: 38px
-  margin-bottom: 23px
+  margin-bottom: 20px
   gap: 10px
   
   .button

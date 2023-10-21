@@ -47,29 +47,39 @@ body {
   color: white;
   font-size: 14px;
   font-family: "Quicksand", sans-serif;
-  padding: 20px;
 }
 
-#top-bar {
+#top-content {
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
-  margin-bottom: 10px;
   align-items: center;
+  padding: 10px;
+  background: #2c2c2c;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
 }
-#top-bar .config-buttons {
+#top-content .config-buttons {
   display: flex;
   gap: 10px;
 }
 
 a {
-  color: #4764ac;
+  color: #384f88;
   font-weight: 700;
   padding: 0 2px;
 }
 a:hover {
-  background: #384f88;
-  color: white;
+  color: #4764ac;
+}
+a img {
+  opacity: 0.5;
+}
+a img:hover {
+  opacity: 1;
+}
+
+#bottom-content {
+  padding: 20px;
 }
 
 .button, .toggle {
@@ -88,27 +98,59 @@ a:hover {
   color: black;
   filter: brightness(140%);
 }
-.button.toggle.active, .toggle.toggle.active {
+.button.active, .toggle.active {
   color: white;
   background: #384f88;
 }
 
 #possession-buttons {
   display: flex;
-  gap: 10px;
+  gap: 2px;
 }
 #possession-buttons .toggle {
-  font-size: 16px;
+  font-size: 15px;
   padding: 5px 10px;
+  border-radius: 0;
+}
+#possession-buttons .toggle:first-of-type {
+  border-top-left-radius: 5px;
+}
+#possession-buttons .toggle:first-of-type:not(.active) {
+  border-bottom-left-radius: 5px;
+}
+#possession-buttons .toggle:last-of-type {
+  border-top-right-radius: 5px;
+}
+#possession-buttons .toggle:last-of-type:not(.active) {
+  border-bottom-right-radius: 5px;
 }
 #possession-buttons .toggle:not(.active) {
-  background: #484848;
+  background: #1a1a1a;
   color: white;
+}
+#possession-buttons .toggle.active {
+  margin-bottom: -3px;
 }
 
 #possession-hints {
-  margin-left: 10px;
-  max-width: 1060px;
+  padding: 10px;
+  background: #2c2c2c;
+  position: absolute;
+  border-top: #384f88 3px solid;
+  border-radius: 5px;
+  margin: 3px 5px 0 5px;
+  z-index: 1000;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
+}
+#possession-hints table {
+  white-space: nowrap;
+  text-align: left;
+}
+#possession-hints table th:not(:last-of-type), #possession-hints table td:not(:last-of-type) {
+  padding-right: 15px;
+}
+#possession-hints table tr:nth-child(odd) {
+  background: #1c1c1c;
 }
 #possession-hints.disabled {
   width: 0;
@@ -120,6 +162,15 @@ a:hover {
 }
 #possession-hints p, #possession-hints ul {
   margin: 0 0 15px 0;
+}
+#possession-hints ul {
+  margin-left: 20px;
+}
+#possession-hints ul li:not(:last-of-type) {
+  margin-bottom: 3px;
+}
+#possession-hints div > :last-child {
+  margin-bottom: 0;
 }
 
 .disabled {
@@ -135,7 +186,6 @@ a:hover {
 }
 #ghosts .ghost {
   transition: opacity 0.125s ease;
-  background: black;
   position: relative;
 }
 #ghosts .ghost h3 {
@@ -151,12 +201,15 @@ a:hover {
   margin: 0 0 0.8em 0;
   font-size: 13px;
 }
+#ghosts .ghost ul {
+  margin-left: 15px;
+}
 #ghosts .ghost .evidence {
   flex-direction: row;
   display: flex;
   padding: 5px;
   gap: 5px;
-  margin-top: 3px;
+  margin: 3px 0 0 0;
 }
 #ghosts .ghost .evidence li {
   list-style: none;
@@ -191,8 +244,7 @@ a:hover {
 
 #evidence-buttons {
   display: flex;
-  margin-top: 38px;
-  margin-bottom: 23px;
+  margin-bottom: 20px;
   gap: 10px;
 }
 #evidence-buttons .button {
