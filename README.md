@@ -1,4 +1,4 @@
-# Phasmohelper (Jobus Fork)
+# ![](favicon.ico) PhasmoHelper - Jobus Fork
 A web app for helping track ghost evidence in the game Phasmophobia.
 
 This is a fork of [Phasmohelper](https://github.com/zuffdaddy/phasmohelper) with my personal changes that are experimental or not suitable for pull requests.
