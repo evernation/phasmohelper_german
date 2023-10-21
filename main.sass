@@ -15,6 +15,13 @@ body
   color: white
   font-size: 14px
   font-family: "Quicksand", sans-serif
+  transition: background-color 0.4s ease
+
+  &.positive
+    background: darken($positive-dark, 20%)
+
+  &.negative
+    background: darken($negative-dark, 20%)
 
 #top-content
   display: flex

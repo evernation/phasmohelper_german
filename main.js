@@ -111,11 +111,18 @@ function updateGhosts() {
     });
 
     const ghost = $(".ghost:not(.excluded):not(.disabled)");
-    if (ghost.length === 1) {
+    if (ghost.length === 0) {
+        body.removeClass("positive");
+        body.addClass("negative");
+    }
+    else if (ghost.length === 1) {
         ghost.addClass("positive");
+        body.removeClass("negative");
+        body.addClass("positive");
     }
     else {
         ghost.removeClass("positive")
+        body.removeClass("positive negative");
     }
 }
 
