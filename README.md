@@ -7,6 +7,7 @@ Changes from the original:
 - Greatly minimalized; does away with flavor and introductory text. Focus on the game details that can't be found in-game.
 - Changed evidence sliders to toggles. Right-click to cross out.
 - Can click on a ghost's name to individually exclude it.
+- Additional toggles for abnormal ghost behavior like early hunts.
 - In Nightmare mode, highlight guaranteed evidence with dotted borders.
 - Cursed possession toggling: the other buttons no longer disappear when you open one of them, and the description is instead placed below.
 - 'R' hotkey to reset evidence.

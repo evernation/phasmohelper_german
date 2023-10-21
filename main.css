@@ -222,6 +222,9 @@ a img:hover {
   gap: 5px;
   margin: 3px 0 0 0;
 }
+#ghosts .ghost .evidence li:empty {
+  display: none !important;
+}
 #ghosts .ghost .evidence li {
   list-style: none;
   background: #2f2f2f;
@@ -272,6 +275,10 @@ a img:hover {
 #evidence-buttons .button.negative {
   background: #982323;
   text-decoration: line-through;
+}
+#evidence-buttons hr {
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .excluded {
