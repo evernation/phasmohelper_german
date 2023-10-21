@@ -35,6 +35,11 @@ body
   .config-buttons
     display: flex
     gap: 10px
+    
+    .toggle:not(.active)
+      background: $neutral-light
+      color: white
+    
 
 a
   color: $primary
@@ -107,7 +112,7 @@ a
   position: absolute
   border-top: $primary 3px solid
   border-radius: 5px
-  margin: 3px 5px 0 5px
+  margin: 3px 5px 0 -5px
   z-index: 1000
   box-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px
   
