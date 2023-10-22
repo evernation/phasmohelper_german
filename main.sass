@@ -1,5 +1,13 @@
 ﻿@import "colors"
 
+$top-bar-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px
+
+@font-face
+  font-family: 'lazy_dog'
+  src: url('lazy_dog.woff') format('woff')
+  font-weight: normal
+  font-style: normal
+
 *
   margin: 0
   padding: 0
@@ -29,8 +37,8 @@ body
   gap: 25px
   align-items: center
   padding: 10px
-  background: #2c2c2c
-  box-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px
+  background: $top-bar
+  box-shadow: $top-bar-shadow
 
   .config-buttons
     display: flex
@@ -108,13 +116,13 @@ a
 
 #possession-hints
   padding: 10px
-  background: #2c2c2c
+  background: $top-bar
   position: absolute
   border-top: $primary 3px solid
   border-radius: 5px
   margin: 3px 5px 0 -5px
   z-index: 1000
-  box-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px
+  box-shadow: $top-bar-shadow
   
   table
     white-space: nowrap
@@ -145,6 +153,36 @@ a
   
   div>:last-child
     margin-bottom: 0
+
+#journal-minimap
+  z-index: 1000
+  top: 62px
+  right: 10px
+  position: absolute
+  background: darken($neutral-dark, 8%)
+  padding: 7px
+  border-radius: 10px
+  box-shadow: $top-bar-shadow
+  color: $neutral-light
+  user-select: none
+  
+  table
+    white-space: nowrap
+    text-align: center
+    font-size: 5px
+    font-family: "lazy_dog", "Quicksand", sans-serif
+    font-weight: lighter
+    
+    tr:not(:last-of-type)
+      height: 8px
+      
+      .positive
+        color: $positive-light
+        text-shadow: $positive-light 0 0 5px
+        font-size: 8px
+  
+    th:not(:last-of-type), td:not(:last-of-type)
+      padding-right: 5px
 
 .disabled
   display: none !important

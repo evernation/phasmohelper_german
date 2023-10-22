@@ -7,6 +7,7 @@ const possessionHints = $("#possession-hints").children();
 const evidenceButtons = $("#evidence-buttons .button");
 const ghosts = $(".ghost");
 const ghostEvidences = $(".ghost .evidence");
+const ghostSheet = $("#journal-minimap");
 
 const body = $("body");
 const bottomContent = $("#bottom-content");
@@ -46,6 +47,7 @@ function reset() {
     ghostEvidences.children("li").removeClass("positive negative");
     evidenceButtons.removeClass("disabled positive negative");
     body.removeClass("positive negative");
+    ghostSheet.addClass("disabled");
 }
 
 $("#reset").on("click", reset);
@@ -114,15 +116,22 @@ function updateGhosts() {
     if (ghost.length === 0) {
         body.removeClass("positive");
         body.addClass("negative");
+        ghostSheet.addClass("disabled");
     }
     else if (ghost.length === 1) {
         ghost.addClass("positive");
         body.removeClass("negative");
         body.addClass("positive");
+        ghostSheet.removeClass("disabled");
+        
+        const ghostName = ghost.find("h3").text();
+        ghostSheet.find(".positive").removeClass("positive");
+        ghostSheet.find(`td:contains(${ghostName})`).addClass("positive");
     }
     else {
         ghost.removeClass("positive")
         body.removeClass("positive negative");
+        ghostSheet.addClass("disabled");
     }
 }
 

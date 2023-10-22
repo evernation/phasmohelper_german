@@ -30,6 +30,12 @@
   color: rosybrown;
 }
 
+@font-face {
+  font-family: "lazy_dog";
+  src: url("lazy_dog.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 * {
   margin: 0;
   padding: 0;
@@ -182,6 +188,37 @@ a img:hover {
 }
 #possession-hints div > :last-child {
   margin-bottom: 0;
+}
+
+#journal-minimap {
+  z-index: 1000;
+  top: 62px;
+  right: 10px;
+  position: absolute;
+  background: #1a1a1a;
+  padding: 7px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
+  color: #626262;
+  user-select: none;
+}
+#journal-minimap table {
+  white-space: nowrap;
+  text-align: center;
+  font-size: 5px;
+  font-family: "lazy_dog", "Quicksand", sans-serif;
+  font-weight: lighter;
+}
+#journal-minimap table tr:not(:last-of-type) {
+  height: 8px;
+}
+#journal-minimap table tr:not(:last-of-type) .positive {
+  color: #5cac47;
+  text-shadow: #5cac47 0 0 5px;
+  font-size: 8px;
+}
+#journal-minimap table th:not(:last-of-type), #journal-minimap table td:not(:last-of-type) {
+  padding-right: 5px;
 }
 
 .disabled {
