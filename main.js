@@ -68,22 +68,30 @@ nightmareToggle.on("click", function () {
 });
 
 function updateGhosts() {
-    const foundEvidence = $("#evidence-buttons .button.positive").map((i, e) => e.getAttribute("data-evidence")).get();
+    const foundEvidence = $("#evidence-buttons .button.positive[data-evidence]").map((i, e) => e.getAttribute("data-evidence")).get();
+    const foundExtras = $("#evidence-buttons .button.positive[data-evidence-extra]").map((i, e) => e.getAttribute("data-evidence-extra")).get();
     const nightmare = nightmareToggle.hasClass("active");
 
     // Check the evidence list of each ghost
     // Hide any ghosts that do not contain all currently discovered evidence
     // Fade any ghosts that can be ruled out based on excluded evidence
-    const negatives = $(".evidence .negative");
+    const positives = $(".evidence .positive[data-evidence]");
+    const negatives = $(".evidence .negative[data-evidence]");
+    const positivesExtra = $(".evidence .positive[data-evidence-extra]");
+    const negativesExtra = $(".evidence .negative[data-evidence-extra]");
     const negativesRequired = $(".evidence .negative[required='true']");
     ghostEvidences.each(function () {
         const $this = $(this);
-        const ghost = $this.parents(".ghost");
-
+        const ghost= $this.parents(".ghost");
+        const requiredEvidence= $this.find($("[required='true']"));
         ghost.removeClass("excluded");
-        if ($this.children(".positive").length !== foundEvidence.length) {
+        if (nightmare && foundEvidence.length === 2 && requiredEvidence.length > 0 && !requiredEvidence.hasClass("positive")) {
             ghost.addClass("disabled");
-        } else if ($this.find(negatives).length > (nightmare ? 1 : 0) || $this.find(negativesRequired).length > 0) {
+        } else if ($this.find(positives).length !== foundEvidence.length) {
+            ghost.addClass("disabled");
+        } else if ($this.find(positivesExtra).length !== foundExtras.length) {
+            ghost.addClass("disabled");
+        } else if ($this.find(negatives).length > (nightmare ? 1 : 0) || $this.find(negativesRequired).length > 0 || $this.find(negativesExtra).length > 0) {
             // In nightmare difficulty one piece of evidence is hidden, so a ghost can only be ruled out if
             // two pieces of evidence are excluded OR if a required piece of evidence is excluded
             ghost.addClass("excluded");
@@ -96,16 +104,16 @@ function updateGhosts() {
     $(".ghost.manual-excluded").addClass("excluded");
 
     const validEvidence = $(".ghost:not(.disabled):not(.excluded) .evidence li")
-        .map((i, e) => e.getAttribute("data-evidence")).get()
+        .map((i, e) => e.getAttribute("data-evidence") ?? e.getAttribute("data-evidence-extra")).get()
         .filter((value, index, self) => self.indexOf(value) === index);
 
     const excludedEvidence = $(".ghost:not(.disabled).excluded .evidence li.negative")
-        .map((i, e) => e.getAttribute("data-evidence")).get()
+        .map((i, e) => e.getAttribute("data-evidence") ?? e.getAttribute("data-evidence-extra")).get()
         .filter((value, index, self) => self.indexOf(value) === index);
 
     $("#evidence-buttons .button:not(.positive)").each(function () {
         const $this = $(this);
-        const evidence = $this.data("evidence");
+        const evidence = $this.data("evidence") ?? $this.data("evidence-extra");
         if (!validEvidence.includes(evidence) && !excludedEvidence.includes(evidence))
             $this.addClass("disabled");
         else
@@ -166,18 +174,24 @@ hideExcludedToggle.on("click", function () {
 
 evidenceButtons.on("click", function () {
     const $this = $(this);
-    const changedEvidence = $this.data("evidence");
-
-    const changedGhosts = $(`.evidence > li[data-evidence=${changedEvidence}]`);
+    
+    let changedGhostEvidences;
+    let changedEvidence = $this.data("evidence");
+    if (changedEvidence != null)
+        changedGhostEvidences = $(`.evidence > li[data-evidence=${changedEvidence}]`);
+    else {
+        changedEvidence = $this.data("evidence-extra");
+        changedGhostEvidences = $(`.evidence > li[data-evidence-extra=${changedEvidence}]`);
+    }
 
     if (!$this.hasClass("positive")) {
         $this.removeClass("negative");
         $this.addClass("positive");
-        changedGhosts.removeClass("negative");
-        changedGhosts.addClass("positive");
+        changedGhostEvidences.removeClass("negative");
+        changedGhostEvidences.addClass("positive");
     } else {
         $this.removeClass("positive negative");
-        changedGhosts.removeClass("positive negative");
+        changedGhostEvidences.removeClass("positive negative");
     }
 
     updateGhosts();
@@ -187,18 +201,24 @@ evidenceButtons.on("contextmenu", function (e) {
     e.preventDefault();
 
     const $this = $(this);
-    const changedEvidence = $this.data("evidence");
 
-    const changedGhosts = $(`.evidence > li[data-evidence=${changedEvidence}]`);
+    let changedGhostEvidences;
+    let changedEvidence = $this.data("evidence");
+    if (changedEvidence != null)
+        changedGhostEvidences = $(`.evidence > li[data-evidence=${changedEvidence}]`);
+    else {
+        changedEvidence = $this.data("evidence-extra");
+        changedGhostEvidences = $(`.evidence > li[data-evidence-extra=${changedEvidence}]`);
+    }
 
     if (!$this.hasClass("negative")) {
         $this.removeClass("positive");
         $this.addClass("negative");
-        changedGhosts.removeClass("positive");
-        changedGhosts.addClass("negative");
+        changedGhostEvidences.removeClass("positive");
+        changedGhostEvidences.addClass("negative");
     } else {
         $this.removeClass("positive negative");
-        changedGhosts.removeClass("positive negative");
+        changedGhostEvidences.removeClass("positive negative");
     }
 
     updateGhosts();
