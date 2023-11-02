@@ -86,77 +86,85 @@ a
     color: white
     background: $primary
 
-#possession-buttons
-  display: flex
-  gap: 2px
+#possessions
+  #possession-buttons
+    display: flex
+    gap: 2px
+
+    .toggle
+      display: flex
+      font-size: 15px
+      padding: 5px 10px
+      border-radius: 0
+      
+      @media screen and (max-width: 1240px)
+        font-size: min(15px,2.5vw)
+        padding: 5px 7px
+      
+      &:first-of-type
+        border-top-left-radius: 5px
+        
+        &:not(.active)
+          border-bottom-left-radius: 5px
+        
+      &:last-of-type
+        border-top-right-radius: 5px
   
-  .toggle
-    font-size: 15px
-    padding: 5px 10px
-    border-radius: 0
-    
-    &:first-of-type
-      border-top-left-radius: 5px
+        &:not(.active)
+          border-bottom-right-radius: 5px
       
       &:not(.active)
-        border-bottom-left-radius: 5px
+        background: darken($neutral-dark, 8%)
+        color: white
       
-    &:last-of-type
-      border-top-right-radius: 5px
-
-      &:not(.active)
-        border-bottom-right-radius: 5px
-    
-    &:not(.active)
-      background: darken($neutral-dark, 8%)
-      color: white
-    
-    &.active
-      margin-bottom: -3px
-
-#possession-hints
-  padding: 10px
-  background: $top-bar
-  position: absolute
-  border-top: $primary 3px solid
-  border-radius: 5px
-  margin: 3px 5px 0 -5px
-  z-index: 1000
-  box-shadow: $top-bar-shadow
+      &.active
+        margin-bottom: -3px
   
-  table
-    white-space: nowrap
-    text-align: left
+  #possession-hints
+    padding: 10px
+    background: $top-bar
+    position: absolute
+    border-top: $primary 3px solid
+    border-radius: 5px
+    margin: 3px 5px 0 -5px
+    z-index: 1000
+    box-shadow: $top-bar-shadow
     
-    th:not(:last-of-type), td:not(:last-of-type)
-      padding-right: 15px
+    div:not(:has(table))
+      max-width: 900px
     
-    tr:nth-child(odd)
-      background: #1c1c1c
-
-  &.disabled
-    width: 0
+    table
+      text-align: left
+      
+      th:not(:last-of-type), td:not(:last-of-type)
+        padding-right: 15px
+      
+      tr:nth-child(odd)
+        background: #1c1c1c
   
-  h2
-    font-size: 22px
-    font-weight: 400
-    margin: 0 0 5px 0
-  
-  p, ul
-    margin: 0 0 15px 0
-  
-  ul
-    margin-left: 20px
+    &.disabled
+      width: 0
     
-    li:not(:last-of-type)
-      margin-bottom: 3px
-  
-  div>:last-child
-    margin-bottom: 0
+    h2
+      font-size: 22px
+      font-weight: 400
+      margin: 0 0 5px 0
+    
+    p, ul
+      margin: 0 0 15px 0
+    
+    ul
+      margin-left: 20px
+      
+      li:not(:last-of-type)
+        margin-bottom: 3px
+    
+    div>:last-child
+      margin-bottom: 0
 
 #journal-minimap
   z-index: 1000
-  top: 62px
+  bottom: 10px
   right: 10px
   position: absolute
   background: darken($neutral-dark, 8%)
@@ -255,6 +263,7 @@ a
 
 #evidence-buttons
   display: flex
+  flex-wrap: wrap
   margin-bottom: 20px
   gap: 10px
   
@@ -265,6 +274,9 @@ a
     border-radius: 2px
     cursor: pointer
     color: white
+
+    @media screen and (max-width: 1240px)
+      font-size: 15px
     
     &.positive
       background: $positive
@@ -285,3 +297,8 @@ a
 
   &.positive
     outline: rgba(255, 215, 0, 1) 1px dashed
+
+.github-icon
+  position: absolute
+  right: 10px
+  top: 10px

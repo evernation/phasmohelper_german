@@ -120,36 +120,42 @@ a img:hover {
   background: #384f88;
 }
 
-#possession-buttons {
+#possessions #possession-buttons {
   display: flex;
   gap: 2px;
 }
-#possession-buttons .toggle {
+#possessions #possession-buttons .toggle {
+  display: flex;
   font-size: 15px;
   padding: 5px 10px;
   border-radius: 0;
 }
-#possession-buttons .toggle:first-of-type {
+@media screen and (max-width: 1240px) {
+  #possessions #possession-buttons .toggle {
+    font-size: min(15px, 2.5vw);
+    padding: 5px 7px;
+  }
+}
+#possessions #possession-buttons .toggle:first-of-type {
   border-top-left-radius: 5px;
 }
-#possession-buttons .toggle:first-of-type:not(.active) {
+#possessions #possession-buttons .toggle:first-of-type:not(.active) {
   border-bottom-left-radius: 5px;
 }
-#possession-buttons .toggle:last-of-type {
+#possessions #possession-buttons .toggle:last-of-type {
   border-top-right-radius: 5px;
 }
-#possession-buttons .toggle:last-of-type:not(.active) {
+#possessions #possession-buttons .toggle:last-of-type:not(.active) {
   border-bottom-right-radius: 5px;
 }
-#possession-buttons .toggle:not(.active) {
+#possessions #possession-buttons .toggle:not(.active) {
   background: #1a1a1a;
   color: white;
 }
-#possession-buttons .toggle.active {
+#possessions #possession-buttons .toggle.active {
   margin-bottom: -3px;
 }
-
-#possession-hints {
+#possessions #possession-hints {
   padding: 10px;
   background: #2c2c2c;
   position: absolute;
@@ -159,40 +165,42 @@ a img:hover {
   z-index: 1000;
   box-shadow: rgba(0, 0, 0, 0.4) 0 4px 4px;
 }
-#possession-hints table {
-  white-space: nowrap;
+#possessions #possession-hints div:not(:has(table)) {
+  max-width: 900px;
+}
+#possessions #possession-hints table {
   text-align: left;
 }
-#possession-hints table th:not(:last-of-type), #possession-hints table td:not(:last-of-type) {
+#possessions #possession-hints table th:not(:last-of-type), #possessions #possession-hints table td:not(:last-of-type) {
   padding-right: 15px;
 }
-#possession-hints table tr:nth-child(odd) {
+#possessions #possession-hints table tr:nth-child(odd) {
   background: #1c1c1c;
 }
-#possession-hints.disabled {
+#possessions #possession-hints.disabled {
   width: 0;
 }
-#possession-hints h2 {
+#possessions #possession-hints h2 {
   font-size: 22px;
   font-weight: 400;
   margin: 0 0 5px 0;
 }
-#possession-hints p, #possession-hints ul {
+#possessions #possession-hints p, #possessions #possession-hints ul {
   margin: 0 0 15px 0;
 }
-#possession-hints ul {
+#possessions #possession-hints ul {
   margin-left: 20px;
 }
-#possession-hints ul li:not(:last-of-type) {
+#possessions #possession-hints ul li:not(:last-of-type) {
   margin-bottom: 3px;
 }
-#possession-hints div > :last-child {
+#possessions #possession-hints div > :last-child {
   margin-bottom: 0;
 }
 
 #journal-minimap {
   z-index: 1000;
-  top: 62px;
+  bottom: 10px;
   right: 10px;
   position: absolute;
   background: #1a1a1a;
@@ -295,6 +303,7 @@ a img:hover {
 
 #evidence-buttons {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 20px;
   gap: 10px;
 }
@@ -305,6 +314,11 @@ a img:hover {
   border-radius: 2px;
   cursor: pointer;
   color: white;
+}
+@media screen and (max-width: 1240px) {
+  #evidence-buttons .button {
+    font-size: 15px;
+  }
 }
 #evidence-buttons .button.positive {
   background: #498838;
@@ -327,6 +341,12 @@ a img:hover {
 }
 .nightmare .evidence li[required=true].positive {
   outline: rgb(255, 215, 0) 1px dashed;
+}
+
+.github-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 /*# sourceMappingURL=main.css.map */
