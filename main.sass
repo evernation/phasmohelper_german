@@ -274,9 +274,18 @@ a
     border-radius: 2px
     cursor: pointer
     color: white
+    
+    .short
+      display: none
 
     @media screen and (max-width: 1240px)
       font-size: 15px
+
+      .short
+        display: inherit
+        
+      .full
+        display: none
     
     &.positive
       background: $positive

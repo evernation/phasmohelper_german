@@ -315,9 +315,18 @@ a img:hover {
   cursor: pointer;
   color: white;
 }
+#evidence-buttons .button .short {
+  display: none;
+}
 @media screen and (max-width: 1240px) {
   #evidence-buttons .button {
     font-size: 15px;
+  }
+  #evidence-buttons .button .short {
+    display: inherit;
+  }
+  #evidence-buttons .button .full {
+    display: none;
   }
 }
 #evidence-buttons .button.positive {
