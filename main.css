@@ -202,7 +202,7 @@ a img:hover {
   z-index: 1000;
   bottom: 10px;
   right: 10px;
-  position: absolute;
+  position: fixed;
   background: #1a1a1a;
   padding: 7px;
   border-radius: 10px;
