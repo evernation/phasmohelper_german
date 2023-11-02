@@ -250,8 +250,19 @@ a img:hover {
   margin: 0 0 0.2em 0;
   cursor: pointer;
 }
+#ghosts .ghost h3 img {
+  height: 36px;
+  margin-bottom: -8px;
+  margin-top: -8px;
+  margin-left: 6px;
+  opacity: 28%;
+}
 #ghosts .ghost.positive h3 {
   color: #5cac47;
+}
+#ghosts .ghost.positive h3 img {
+  opacity: 100%;
+  filter: brightness(50%) sepia(1) saturate(2.5) hue-rotate(60deg);
 }
 #ghosts .ghost p {
   margin: 0 0 0.8em 0;
