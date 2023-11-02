@@ -101,8 +101,8 @@
                 </table>
                 <br/>
                 <ul>
-                    <li>If the question is recognised, the planchette will move to answer the question, and an EMF Level 2 reading will be generated around the Ouija Board.</li>
-                    <li>If the ghost has EMF Level 5 as evidence, there is a 25% chance for this to be the reading instead.</li>
+                    <li>If the question is recognised, the planchette will move to answer the question, and an EMF 2 reading will be generated around the Ouija Board.</li>
+                    <li>If the ghost has EMF 5 as evidence, there is a 25% chance for this to be the reading instead.</li>
                     <li>The Ouija Board does not have to be in the Ghost Room (nor the ghost's current room) to work.</li>
                     <li>Can only be used while inside the investigation area.</li>
                 </ul>
@@ -346,7 +346,7 @@
                 <h3>Demon</h3>
                 <ul>
                     <li><span class="hunt-initiation">Hunt Initiation</span> can happen at any average sanity. Even 100%.</li>
-                    <li><span class="hunt-initiation">Hunt Initiation</span> blocking range of Crucifixes increased from 3m to 5m.</li>
+                    <li><span class="hunt-initiation">Hunt Initiation</span> blocking range of crucifixes increased from 3m to 5m.</li>
                     <li><span class="average-sanity-hunt">Average Sanity Hunt</span> at 70%.</li>
                     <li><span class="smudge-stick-hunt-prevention">Smudge Stick Hunt Prevention</span> is reduced from 90 seconds to 60 seconds.</li>
                     <li>Minimum hunt time cooldown is reduced from 25 seconds to 20 seconds.</li>
@@ -367,7 +367,6 @@
                     <li><span class="hunting-speed">Hunting Speed</span> increased by 75% when more than 6m away. Below 6m, the ghost becomes <b>much</b> slower as it approaches the player.</li>
                     <li><span class="when-hunting">When Hunting</span>, it always has line of sight with all players (hiding spots don't work) and will occasionally repick the nearest target throughout the hunt.</li>
                     <li><span class="when-hunting">When Hunting</span>, it is invisible for shorter intervals.</li>
-                    <li>Will show up more often as a silhouette on the D.O.T.S Projector.</li>
                     <li>Can produce a unique heavy bull-like breathing within 1 meter.</li>
                     <li>Using a Smudge Stick will force it to repick the nearest target when the smudge effect runs out.</li>
                 </ul>
@@ -398,7 +397,7 @@
             <div>
                 <h3>Hantu</h3>
                 <ul>
-                    <li><span class="when-hunting">When Hunting</span>, you can see freezing breath from the ghost if the breaker is off.</li>
+                    <li><span class="when-hunting">When Hunting</span>, living players can see freezing breath from the ghost if the breaker is off, even through a video camera.</li>
                     <li><span class="hunting-speed">Hunting Speed</span> increases depending on temperature in rooms below 15°C, up to 60% below 0°C.</li>
                     <li><span class="hunting-speed">Hunting Speed</span> decreased by 20% in rooms above 15°C.</li>
                     <li><span class="hunting-speed">Hunting Speed</span> does not accelerate when in line of sight of a player, unlike most ghosts.</li>
@@ -418,7 +417,7 @@
                 <h3>Jinn</h3>
                 <ul>
                     <li><span class="hunting-speed">Hunting Speed</span> increased by 50% if in line of sight and the player is over 3m away, while the breaker is ON.</li>
-                    <li><span class="sanity-loss">Sanity Loss</span> by 25% using an ability if you stand within 3m of the ghost and if the breaker is ON.</li>
+                    <li><span class="sanity-loss">Sanity Loss</span> of 25% occassionally if you stand within 3m of the ghost and if the breaker is ON. Also triggers an EMF 2 or 5 at the breaker.</li>
                     <li>Breaker cannot be turned OFF by ghost interaction.</li>
                 </ul>
                 <ul class="evidence">
@@ -434,12 +433,12 @@
             <div>
                 <h3>Mare</h3>
                 <ul>
-                    <li><span class="when-hunting">When Hunting</span>, they are more likely to turn OFF lights than any other form of interaction.</li>
                     <li><span class="average-sanity-hunt">Average Sanity Hunt</span> threshold with lights ON is at 40% and 60% with lights OFF.</li>
                     <li><span class="ghost-events">Ghost Events</span> are more likely to be breaking a light bulb.</li>
+                    <li><span class="interactions">Interactions</span> are more likely to be turning OFF lights.</li>
                     <li>Lights can be turned OFF immediately after you turn them ON. Cannot be spammed.</li>
                     <li>Lights cannot be turned ON by ghost.</li>
-                    <li>Roaming long range has a higher chance to happen if the lights are ON in the room.</li>
+                    <li>More likely to roam into unlit rooms, and therefore has a higher chance to change its ghost room if the current ghost room is lit.</li>
                 </ul>
                 <ul class="evidence">
                     <li data-evidence="box">Spirit Box</li>
@@ -476,7 +475,7 @@
                     <li>The curse will pause when outside of the house, and start again when back inside.</li>
                     <li>Sanity Pills will break the curse.</li>
                     <li>Multiple players can be cursed at the same time.</li>
-                    <li>Smudging the Moroi during a hunt will cause it to wander for 12 seconds (instead of 6 seconds).</li>
+                    <li>Smudging the Moroi during a hunt will disorient it for 50% longer, meaning it will still be disoriented for a few seconds after the smudge stick has burnt down.</li>
                 </ul>
                 <ul class="evidence">
                     <li data-evidence="box" required="true">Spirit Box</li>
@@ -506,7 +505,7 @@
             <div>
                 <h3>Obake</h3>
                 <ul>
-                    <li><span class="when-hunting">When Hunting</span>, may temporarily change into a different ghost's form.</li>
+                    <li><span class="when-hunting">When Hunting</span>, will suddenly temporarily change into a different ghost's form. Not visible to dead players.</li>
                     <li>UV can show six-fingered handprint.</li>
                     <li>UV can show two fingerprints on light switches (instead of one).</li>
                     <li>UV prints have a 75% chance of showing.</li>
@@ -561,8 +560,9 @@
                 <ul>
                     <li><span class="when-hunting">When Hunting</span>, the ghost is invisible for twice as much of the time.</li>
                     <li><span class="sanity-loss">Sanity Loss</span> of 0.5%/sec occurs while being in line of sight within 10m of the ghost during a ghost event or hunt.</li>
+                    <li>When photographed during a <span class="ghost-events">Ghost Event</span>, it will turn invisible for the remainder of the event while the audio continues.</li>
                     <li>Ghost pictures listed in the journal will not show the ghost in the image, and will not contain any interference.</li>
-                    <li>May pick a random player inside the house and walk to them no matter the distance.</li>
+                    <li>May pick a random player inside the house and walk to them no matter the distance, generating an EMF 2 reading at the player's location.</li>
                 </ul>
                 <ul class="evidence">
                     <li data-evidence="box">Spirit Box</li>
@@ -633,8 +633,8 @@
                     <li><span class="ghost-events">Ghost Events</span> likelihood based on the average sanity. The chance starts at 0% at 100% sanity, and gradually increases to 100% at 50% sanity.</li>
                     <li><span class="ghost-events">Ghost Events</span> are likely to be ghost mist/airball (audio ones with the breath, hiss, or woosh).</li>
                     <li><span class="ghost-events">Ghost Events</span> showing its form are likely to be a shadowy figure.</li>
-                    <li><span class="interactions">Interactions</span> cannot be thrown object if a player is in the same room as the ghost.</li>
-                    <li>When made to appear using a Summoning Circle, a Music Box, or a Monkey Paw, it has a chance of appearing as a black shadow rather than its full form while stationary.</li>
+                    <li>No <span class="interactions">Interactions</span> if a player is in the same room as the ghost, except Ghost Writing and blowing out candles.</li>
+                    <li>When made to appear using a Summoning Circle, a Music Box, or a Monkey Paw, it has a chance of appearing as a black shadow rather than its full form.</li>
                 </ul>
                 <ul class="evidence">
                     <li data-evidence="emf">EMF 5</li>
@@ -648,6 +648,7 @@
                 <h3>Spirit</h3>
                 <ul>
                     <li><span class="smudge-stick-hunt-prevention">Smudge Stick Hunt Prevention</span> is increased from 90 seconds to 180 seconds.</li>
+                    <li>Note that, as per usual, smudging again will reset the timer.</li>
                 </ul>
                 <ul class="evidence">
                     <li data-evidence="emf">EMF 5</li>
@@ -665,6 +666,7 @@
                     <li><span class="hunting-speed">Hunting Speed</span> does not accelerate when in line of sight of a player, unlike most ghosts.</li>
                     <li><span class="interactions">Interactions</span> and <span class="ghost-events">Ghost Events</span> happen very frequently at start. Decreases each time the ghost ages, stopping at 1/4 of the initial frequency.</li>
                     <li>Only ages when a player is in the same room as the ghost.</li>
+                    <li>Its response to asking its age on the Ouija Board will also change.</li>
                 </ul>
                 <ul class="evidence">
                     <li data-evidence="orb">Ghost Orb</li>
@@ -681,10 +683,9 @@
                 <h3>The Twins</h3>
                 <ul>
                     <li><span class="hunt-initiation">Hunt Initiation</span> can occur where either twin is currently located. This includes the Summoning Circle.</li>
-                    <li><span class="hunt-initiation">Hunt Initiation</span> from the alt-twin will interact with something firs then immediately hunt.</li>
-                    <li><span class="hunting-speed">Hunting Speed</span> decreased by 10% for the twin that is in the ghost room.</li>
-                    <li><span class="hunting-speed">Hunting Speed</span> increased by 10% for the alt-twin that is not in the ghost room.</li>
-                    <li><span class="interactions">Interactions</span> may occur in two separate areas of the room/map almost at the same time.</li>
+                    <li><span class="hunt-initiation">Hunt Initiation</span> blocking of crucifixes is based on the main twin's location, no matter which twin initiates the hunt.</li>
+                    <li><span class="hunting-speed">Hunting Speed</span> is increased or decreased by 10% depending on which twin is hunting. The alt-twin is the fast one.</li>
+                    <li><span class="interactions">Interactions</span> may occur in two separate areas of the house nearly at the same time.</li>
                     <li>Activity Monitor will show an initial climb then level off followed by an immediate spike indicating a double interaction.</li>
                     <li>Evidence will not be available from the alt-twin except EMF 5.</li>
                 </ul>
@@ -702,7 +703,7 @@
                 <h3>Wraith</h3>
                 <ul>
                     <li>Will never step in a salt pile.</li>
-                    <li>May teleport to a random player, generating an EMF 2 even with no items to interact with.</li>
+                    <li>May teleport to a random player, generating an EMF 2 reading at the player's location.</li>
                 </ul>
                 <ul class="evidence">
                     <li data-evidence="emf">EMF 5</li>
