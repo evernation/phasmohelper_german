@@ -15,6 +15,8 @@ Changes from the original:
 
 Access it here: https://jobus0.github.io/phasmohelper/
 
+![](ghost-icons/wraith.webp) ![](ghost-icons/oni.webp) ![](ghost-icons/deogen.webp)
+
 # License
 MIT License
 
