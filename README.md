@@ -10,9 +10,12 @@ Changes from the original:
 - Additional toggles for abnormal ghost behavior like early hunts.
 - In Nightmare mode, highlight guaranteed evidence with dotted borders.
 - Cursed possession toggling: the other buttons no longer disappear when you open one of them, and the description is instead placed below.
+- Official ghost icons next to the names.
 - 'R' hotkey to reset evidence.
 
 Access it here: https://jobus0.github.io/phasmohelper/
+
+![](ghost-icons/wraith.webp) ![](ghost-icons/oni.webp) ![](ghost-icons/deogen.webp)
 
 # License
 MIT License
