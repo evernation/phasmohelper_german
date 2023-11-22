@@ -217,10 +217,10 @@ a img:hover {
   font-family: "lazy_dog", "Quicksand", sans-serif;
   font-weight: lighter;
 }
-#journal-minimap table tr:not(:last-of-type) {
+#journal-minimap table tr {
   height: 8px;
 }
-#journal-minimap table tr:not(:last-of-type) .positive {
+#journal-minimap table .positive {
   color: #5cac47;
   text-shadow: #5cac47 0 0 5px;
   font-size: 8px;
