@@ -1,7 +1,7 @@
 # ![](favicon.ico) PhasmoHelper - Jobus Fork
-A web app for helping track ghost evidence in the game Phasmophobia.
+A web app to help find ghosts in the game Phasmophobia.
 
-This is a fork of [Phasmohelper](https://github.com/zuffdaddy/phasmohelper) with my personal changes that are experimental or not suitable for pull requests.
+This is a heavily modified fork of the now-dead [phasmohelper](https://github.com/zuffdaddy/phasmohelper).
 
 Changes from the original:
 - Greatly minimalized; does away with flavor and introductory text. Focus on the game details that can't be found in-game.
@@ -22,7 +22,7 @@ MIT License
 
 Copyright (c) 2022 zuffdaddy
 
-Copyright (c) 2023 Jobus
+Copyright (c) 2024 Jobus
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
