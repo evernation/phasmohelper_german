@@ -12,6 +12,10 @@ const ghostSheet = $("#journal-minimap");
 const body = $("body");
 const bottomContent = $("#bottom-content");
 
+evidenceButtons.each(function() {
+    $(this).prop('title', 'Left-click to include.\nRight-click to exclude.');
+});
+
 function writeCookie(name, value) {
     const d = new Date();
     d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
@@ -99,6 +103,10 @@ function updateGhosts() {
         } else {
             ghost.removeClass("disabled");
         }
+
+        requiredEvidence.each(function () {
+            $(this).prop('title', nightmare ? 'In nightmare difficulty, this piece of evidence is guaranteed for this ghost.' : '');
+        })
     });
 
     $(".ghost.manual-excluded").addClass("excluded");
@@ -234,4 +242,8 @@ ghostHeaders.on("contextmenu", function (e) {
     e.preventDefault();
     $(this).parents(".ghost").toggleClass("manual-excluded");
     updateGhosts();
+});
+
+ghostHeaders.each(function() {
+    $(this).prop('title', 'Click to exclude.');
 });
