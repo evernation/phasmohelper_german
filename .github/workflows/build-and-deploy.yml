@@ -9,7 +9,7 @@ jobs:
             id-token: write
 
         environment:
-            name: github-pages
+            name: ${{ github.ref_name == 'master' && 'github-pages' || 'develop-pages' }}
             url: ${{ steps.deployment.outputs.page_url }}
         
         runs-on: ubuntu-latest
