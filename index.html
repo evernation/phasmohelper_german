@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
 </head>
-<body onload="loadSettings()">
+<body>
 <div id="top-content">
     <div class="config-buttons">
         <div class="toggle" id="nightmare-toggle">Nightmare</div>
@@ -767,16 +767,11 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="main.js"></script>
+<script src="main.js"></script>
 <script src="https://unpkg.com/animate-css-grid@1.4.3/dist/main.js"></script>
 <script>
-    {
-        const ghosts = document.querySelector("#ghosts");
-        animateCSSGrid.wrapGrid(ghosts, {duration: 400});
-        const evidence = document.querySelector("#evidence-buttons");
-        animateCSSGrid.wrapGrid(evidence, {duration: 400});
-    }
+    animateCSSGrid.wrapGrid(document.querySelector("#ghosts"), {duration: 400});
+    animateCSSGrid.wrapGrid(document.querySelector("#evidence-buttons"), {duration: 400});
 </script>
 </body>
 </html>
