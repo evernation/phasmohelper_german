@@ -21,4 +21,6 @@ jobs:
         - run: npm install -g typescript
         - run: tsc
         - uses: actions/upload-pages-artifact@v3
+          with:
+              path: './'
         - uses: actions/deploy-pages@v4
