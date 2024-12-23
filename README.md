@@ -1,4 +1,4 @@
-# ![](favicon.ico) PhasmoHelper - Jobus Fork
+# ![](src/favicon.ico) PhasmoHelper - Jobus Fork
 A web app to help find ghosts in the game Phasmophobia.
 
 This is a heavily modified fork of the now-dead [phasmohelper](https://github.com/zuffdaddy/phasmohelper).
@@ -15,7 +15,7 @@ Changes from the original:
 
 Access it here: https://jobus0.github.io/phasmohelper/
 
-![](ghost-icons/wraith.webp) ![](ghost-icons/oni.webp) ![](ghost-icons/deogen.webp)
+<img height="64" src="src/ghost-icons/wraith.png"/> <img height="64" src="src/ghost-icons/oni.png"/> <img height="64" src="src/ghost-icons/deogen.png"/>
 
 # License
 MIT License
