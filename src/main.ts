@@ -13,8 +13,13 @@ const ghostSheet = document.querySelector("#journal-minimap")!;
 const body = document.body;
 const bottomContent = document.querySelector<HTMLElement>("#bottom-content")!;
 
-if (readCookie("hide-excluded-toggle") === "True") {
-    body.classList.add("hide-excluded-toggle")
+if (readCookie("nightmare").toLowerCase() === "true") {
+    body.classList.add("nightmare")
+    nightmareToggle.classList.add("active");
+}
+
+if (readCookie("hide-excluded").toLowerCase() === "true") {
+    body.classList.add("hide-excluded")
     hideExcludedToggle.classList.add("active");
 }
 
@@ -68,7 +73,14 @@ document.querySelectorAll(".toggle").forEach(toggle => {
 })
 
 nightmareToggle.addEventListener("click", function () {
-    body.classList.toggle("nightmare");
+    let state = body.classList.toggle("nightmare");
+    writeCookie("nightmare", state.toString())
+    updateGhosts();
+});
+
+hideExcludedToggle.addEventListener("click", function () {
+    let state = body.classList.toggle("hide-excluded");
+    writeCookie("hide-excluded", state.toString())
     updateGhosts();
 });
 
@@ -177,18 +189,6 @@ possessionButtons.forEach((button, i) => button.addEventListener("click", functi
         bottomContent.style.marginTop = (container.clientHeight) + "px";
     }
 }));
-
-hideExcludedToggle.addEventListener("click", function () {
-    if (body.classList.contains("hide-excluded-toggle")) {
-        body.classList.remove("hide-excluded-toggle");
-        writeCookie("hide-excluded-toggle", "False")
-    } else {
-        body.classList.add("hide-excluded-toggle");
-        writeCookie("hide-excluded-toggle", "True")
-    }
-
-    updateGhosts();
-});
 
 evidenceButtons.forEach(button => button.addEventListener("click", function () {
     let changedGhostEvidences;
