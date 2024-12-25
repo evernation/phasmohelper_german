@@ -82,13 +82,13 @@ function updateGhosts() {
     // Fade any ghosts that can be ruled out based on excluded evidence
     ghostEvidences.forEach(evidence => {
         const ghost= evidence.closest(".ghost")!;
-        const requiredEvidence= evidence.querySelector<HTMLElement>("[required='true']");
+        const requiredEvidence= evidence.querySelector<HTMLElement>("[required]");
 
         const positives = evidence.querySelectorAll('.positive[data-evidence]');
         const negatives = evidence.querySelectorAll('.negative[data-evidence]');
         const positivesExtra = evidence.querySelectorAll('.positive[data-evidence-extra]');
         const negativesExtra = evidence.querySelectorAll('.negative[data-evidence-extra]');
-        const negativesRequired = evidence.querySelectorAll('.negative[required="true"]');
+        const negativesRequired = evidence.querySelectorAll('.negative[required]');
         
         ghost.classList.remove("excluded");
         
