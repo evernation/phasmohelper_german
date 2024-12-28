@@ -52,7 +52,7 @@ function readCookie(name: string) {
 
 function reset() {
     ghosts.forEach(ghost => ghost.classList.remove("disabled", "positive", "excluded", "manual-excluded"));
-    ghostEvidences.forEach(evidence => evidence.querySelectorAll("li").forEach(child => child.classList.remove("positive", "negative")));
+    ghostEvidences.forEach(evidence => evidence.querySelectorAll("li").forEach(child => child.classList.remove("positive", "negative", "faded")));
     evidenceButtons.forEach(button => button.classList.remove("disabled", "positive", "negative"));
     body.classList.remove("positive", "negative");
     ghostSheet.classList.add("disabled");
@@ -96,6 +96,7 @@ function updateGhosts() {
         const ghost= evidence.closest(".ghost")!;
         const requiredEvidence= evidence.querySelector<HTMLElement>("[required]");
 
+        const evidenceCount = evidence.querySelectorAll('[data-evidence]').length;
         const positives = evidence.querySelectorAll('.positive[data-evidence]');
         const negatives = evidence.querySelectorAll('.negative[data-evidence]');
         const positivesExtra = evidence.querySelectorAll('.positive[data-evidence-extra]');
@@ -104,7 +105,9 @@ function updateGhosts() {
         
         ghost.classList.remove("excluded");
         
-        if (nightmare && foundEvidence.length === 2 && requiredEvidence != null && !requiredEvidence.classList.contains("positive")) {
+        if (nightmare && foundEvidence.length === evidenceCount - 1 && requiredEvidence != null && !requiredEvidence.classList.contains("positive")) {
+            ghost.classList.add("disabled");
+        } else if (nightmare && foundEvidence.length > evidenceCount - 1) {
             ghost.classList.add("disabled");
         } else if (positives.length !== foundEvidence.length) {
             ghost.classList.add("disabled");
@@ -119,13 +122,21 @@ function updateGhosts() {
             ghost.classList.remove("disabled");
         }
 
+        const remaining = evidence.querySelectorAll('[data-evidence]:not(.positive, .negative, [required])');
+        if (nightmare && remaining.length == 1) {
+            remaining.forEach(e => e.classList.add("faded"));
+        }
+        else {
+            remaining.forEach(e => e.classList.remove("faded"));
+        }
+
         if (requiredEvidence != null)
             requiredEvidence.title = nightmare ? 'In nightmare difficulty, this piece of evidence is guaranteed for this ghost.' : '';
     });
 
     document.querySelectorAll(".ghost.manual-excluded").forEach(ghost => ghost.classList.add("excluded"));
 
-    const validEvidence = Array.from(document.querySelectorAll(".ghost:not(.disabled):not(.excluded) .evidence li"))
+    const validEvidence = Array.from(document.querySelectorAll(".ghost:not(.disabled):not(.excluded) .evidence li:not(.faded)"))
         .map(e => e.getAttribute("data-evidence") ?? e.getAttribute("data-evidence-extra"))
         .filter((value, index, self) => self.indexOf(value) === index);
 
