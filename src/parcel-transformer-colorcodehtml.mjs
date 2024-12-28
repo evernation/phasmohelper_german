@@ -22,7 +22,6 @@ export default new Transformer({
 async function processHtml(html) {
     return html
         .replace(/\*(.*?)\*/g, '<b>$1</b>')
-        .replace(/_(.*?)_/g, '<i>$1</i>')
         .replace(/\b(Interactions)\b/g, '<span class="interactions">$1</span>')
         .replace(/\b(Sanity Loss)\b/g, '<span class="sanity-loss">$1</span>')
         .replace(/\b(Ghost Events?)\b/g, '<span class="ghost-events">$1</span>')

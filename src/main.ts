@@ -250,17 +250,24 @@ evidenceButtons.forEach(button => button.addEventListener("contextmenu", functio
 }));
 
 const ghostHeaders = document.querySelectorAll<HTMLElement>(".ghost h3");
-ghostHeaders.forEach(header => header.addEventListener("click", function () {
-    header.closest(".ghost")?.classList.toggle("manual-excluded");
-    updateGhosts();
+ghostHeaders.forEach(header => header.addEventListener("mousedown", function (e) {
+    if (e.button === 0 || e.button === 2) { // left or right mouse
+        e.preventDefault();
+        header.closest(".ghost")?.classList.toggle("manual-excluded");
+        updateGhosts();
+    }
+    if (e.button === 1) { // middle mouse
+        e.preventDefault();
+        let wikiUrl = header.getAttribute("wiki");
+        if (wikiUrl != null)
+            window.open(wikiUrl);
+    }
 }));
 
 ghostHeaders.forEach(header => header.addEventListener("contextmenu", function (e) {
-    e.preventDefault();
-    header.closest(".ghost")?.classList.toggle("manual-excluded");
-    updateGhosts();
+    e.preventDefault(); // keep to disable context menu on right-click
 }));
 
 ghostHeaders.forEach(header => {
-    header.title = 'Click to exclude.';
+    header.title = 'Click to exclude.\nMiddle-click to open wiki.';
 });
