@@ -3,16 +3,17 @@ include ../mixins/evidence.pug
 h3 Banshee
     img(src="ghost-icons/banshee.png")
 ul
-    li When Hunting, it targets only one person. If the hunt target is outside the building, it will hunt like any other ghost, chasing any opportune player.
-    li When Hunting, and the main target dies, it will target another player.
-    li Average Sanity Hunt is target dependant and not average sanity.
-    li Ghost Events are likely to be the singing-based ones.
-    li Sanity Loss of 15% instead of 10% from target player when colliding with ghost during singing ghost events.
+    li A random player is picked as the *target*. It picks a new target if the current one dies or disconnects.
+    li When Hunting, if the target is inside the building, it only chases the target, while other players can safely walk through the ghost. Otherwise, it will hunt like normal.
+    li Average Sanity Hunt is based only on the target's sanity.
+    li Ghost Events are more likely to be the singing type.
+    li Sanity Loss of 15% instead of 10% from target player when colliding with ghost during a singing ghost event, if the ghost event is directed towards the target.
     li Parabolic Microphone has a chance 33% for a unique wailing sound.
-    li Roaming will happen often towards their target.
+    li Roaming will happen often towards the target.
     li Will never change its favourite room.
 ul.evidence
     +ultraviolet
     +orb
     +dots
     +earlyhunt
+    +sanityloss
