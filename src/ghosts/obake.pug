@@ -1,0 +1,17 @@
+include ../mixins/evidence.pug
+
+h3 Obake
+    img(src="ghost-icons/obake.png")
+ul
+    li When Hunting, will suddenly temporarily change into a different ghost's form. Not visible to dead players.
+    li When creating UV fingerprints, there is a ~16.7% chance to create a unique pattern:
+    ul
+        li Six-fingered handprint.
+        li Two fingerprints (instead of one) on light switches, lamps, and TV remotes.
+        li Five fingerprints (instead of four) on keyboards and prison cell doors.
+    li UV fingerprints have a 25% chance of not showing.
+    li UV fingerprints' remaining time will occasionally be cut in half. Can happen multiple times in quick succession, making it possible for fingerprints to only last for mere seconds.
+ul.evidence
+    +emf
+    +ultraviolet(required=true)
+    +orb

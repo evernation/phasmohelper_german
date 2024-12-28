@@ -1,6 +1,10 @@
 {
   "devDependencies": {
+    "@parcel/plugin": "^2.13.3",
+    "@parcel/transformer-pug": "^2.13.3",
     "@parcel/transformer-sass": "^2.13.3",
+    "@types/node": "^22.10.2",
+    "node-html-parser": "^7.0.1",
     "parcel": "^2.13.3",
     "sass": "^1.83.0",
     "svgo": "^3.3.2",
@@ -8,9 +12,6 @@
   },
   "scripts": {
     "clean": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true });\"",
-    "build:ts": "tsc",
-    "build:sass": "sass src:dist",
-    "build_old": "npm run clean && npm run build:ts && npm run build:sass",
-    "build": "npm run clean && parcel build src/index.html --public-url ./"
+    "build": "npm run clean && parcel build src/index.pug --public-url ./"
   }
 }
