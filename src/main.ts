@@ -214,6 +214,7 @@ evidenceButtons.forEach(button => button.addEventListener("click", function () {
     if (!button.classList.contains("positive")) {
         button.classList.remove("negative");
         button.classList.add("positive");
+        changedGhostEvidences.forEach(ghostEvidence => ghostEvidence.classList.remove("negative"));
         changedGhostEvidences.forEach(ghostEvidence => ghostEvidence.classList.add("positive"));
     } else {
         button.classList.remove("positive", "negative");
