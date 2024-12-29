@@ -24,7 +24,10 @@ if (readCookie("hide-excluded").toLowerCase() === "true") {
 }
 
 evidenceButtons.forEach(button => {
-    button.title = 'Left-click to include.\nRight-click to exclude.';
+    if (button.title == null)
+        button.title = 'Left-click to include.\nRight-click to exclude.';
+    else
+        button.title += '\n\nLeft-click to include.\nRight-click to exclude.'
 });
 
 function writeCookie(name: string, value: string) {
