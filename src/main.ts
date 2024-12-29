@@ -122,13 +122,14 @@ function updateGhosts() {
             ghost.classList.remove("disabled");
         }
 
-        const remaining = evidence.querySelectorAll('[data-evidence]:not(.positive, .negative, [required])');
+        const remaining = evidence.querySelectorAll('[data-evidence]:not(.positive, [required])');
         if (nightmare && remaining.length == 1) {
             remaining.forEach(e => e.classList.add("faded"));
         }
         else {
             remaining.forEach(e => e.classList.remove("faded"));
         }
+        positives.forEach(e => e.classList.remove("faded"));
 
         if (requiredEvidence != null)
             requiredEvidence.title = nightmare ? 'In nightmare difficulty, this piece of evidence is guaranteed for this ghost.' : '';
