@@ -1,6 +1,7 @@
 MIT License
 
 Copyright (c) 2024 Jobus
+
 Copyright (c) 2022 zuffdaddy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
