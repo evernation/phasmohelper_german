@@ -11,7 +11,8 @@ A web app to help find ghosts in the game Phasmophobia.
 - Behavioral toggles: Filter by abnormal ghost behavior, such as early hunts.
 - Special filtering for the nightmare difficulty. Highlights guaranteed evidence with dotted borders for clarity.
 - Official ghost icons displayed next to ghost names for fast identification.
+- Wiki shortcut: Middle-click a ghost's name to open a new tab to that ghost's wiki page.
 - Convenient hotkey: Press 'R' to reset evidence selections.
-- Extra: Detailed description of cursed possessions.
+- Extra: Detailed descriptions of the cursed possessions.
 
 <img height="64" src="src/ghost-icons/wraith.png"/> <img height="64" src="src/ghost-icons/oni.png"/> <img height="64" src="src/ghost-icons/deogen.png"/>
