@@ -3,9 +3,11 @@ include ../mixins/evidence.pug
 h3(wiki="https://phasmophobia.fandom.com/wiki/Yurei") Yurei
     img(src="ghost-icons/yurei.png")
 ul
-    li Sanity Loss of 15% from fully closing a door near you.
-    li Incense Hunt Prevention will prevent the ghost from leaving the area for 90 seconds.
-    li More frequently closes doors fully (except locker/closet doors), and can even close exit doors without it being a ghost event or a hunt.
+    li Incense Hunt Prevention also traps the ghost in its favourite room for the full duration (90 seconds).
+    li Much more likely to fully close doors, and can uniquely close exit doors without it being a ghost event or a hunt.
+    ul
+        li Causes a Sanity Loss of 15% to nearby players.
+        li A double overlapping sound will be played, followed by a slamming sound after about a second. When this distinct sound pattern is heard, it is very likely a Yurei.
 ul.evidence
     +orb
     +freezing
