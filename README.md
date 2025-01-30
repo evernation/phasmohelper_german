@@ -1,8 +1,8 @@
 # ![](src/favicon.ico) PhasmoHelper
 Eine Web-App, die dabei hilft, Geister im Spiel Phasmophobia zu finden.
 
-[<img alt="phasmohelper" height="260" src="https://github.com/user-attachments/assets/d3cb334b-a14b-403b-8c60-6fd6b27788b5"/>](https://jobus0.github.io/phasmohelper/)
-#### https://jobus0.github.io/phasmohelper/
+[<img alt="phasmohelper" height="260" src="https://github.com/user-attachments/assets/d3cb334b-a14b-403b-8c60-6fd6b27788b5"/>](https://evernation.github.io/phasmohelper_german/)
+#### https://evernation.github.io/phasmohelper_german/
 
 ### Features:
 - Einfaches Design, das sich auf wichtige Infos konzentriert, die im Spiel selbst nicht direkt zugänglich sind.
