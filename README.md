@@ -15,4 +15,4 @@ A web app to help find ghosts in the game Phasmophobia.
 - Convenient hotkey: Press 'R' to reset evidence selections.
 - Extra: Detailed descriptions of the cursed possessions.
 
-<img height="64" src="src/ghost-icons/wraith.png"/> <img height="64" src="src/ghost-icons/oni.png"/> <img height="64" src="src/ghost-icons/deogen.png"/>
+<img height="64" src="img/wraith.png"/> <img height="64" src="img/oni.png"/> <img height="64" src="img/deogen.png"/>
